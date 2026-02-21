@@ -18,8 +18,9 @@ Arknights（アークナイツ）の公開求人でキャラクターを検索�
   - 公開求人の基本ルール、確定条件、タグ一覧など
 
 ### キャラクターデータ
-- **現在**: `public/master.json`（ローカルデータ）
-- **将来**: Cloudflare Workersから取得するAPIデータ（予定）
+- **APIエンドポイント**: `https://arknight-data-backend.shizuka-y.workers.dev/`
+- **リアルタイム取得**: Cloudflare Workersから最新データを自動取得
+- **辞書機能**: キャラクター名、タグ名、UIテキストの多言語対応
 
 ## 🚀 使い方
 
@@ -30,14 +31,15 @@ Arknights（アークナイツ）の公開求人でキャラクターを検索�
 
 ## 🌐 デモ
 
-[GitHub Pagesで公開中](https://[username].github.io/[repository-name]/)
+[GitHub Pagesで公開中](https://shizuka-yuu.github.io/arknights-recruitment-checker/)
 
 ## 🛠 技術スタック
 
-- **Frontend**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS
+- **Frontend**: React 19 + TypeScript + Vite 5
+- **Styling**: Tailwind CSS 4
+- **Backend API**: Cloudflare Workers
 - **Deployment**: GitHub Pages + GitHub Actions CI/CD
+- **Data Source**: Arknights Wiki API連携
 
 ## 📦 インストールと実行
 
@@ -134,10 +136,6 @@ src/
 4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
 5. プルリクエストを作成
 
-## 🌐 デモ
-
-[GitHub Pagesで公開中](https://shizuka-yuu.github.io/arknights-recruitment-checker/)
-
 ## 📝 ライセンス
 
 このプロジェクトはMITライセンスの下で公開されています。
@@ -153,58 +151,6 @@ src/
 - [Arknights公式サイト](https://www.arknights.jp/)
 - [Arknights Wiki](https://arknights.wikiru.jp/)
 - [GitHubリポジトリ](https://github.com/Shizuka-Yuu/arknights-recruitment-checker)
-
----
-
-## 🚀 画像最適化機能
-
-### 概要
-150個以上の画像ファイルを含むプロジェクトで、GitHub Pagesのレート制限を超過する可能性があります。画像最適化ワークフローを導入して、この問題を解決します。
-
-### 使用方法
-1. **手動最適化**:
-   ```bash
-   # GitHub Actionsで実行
-   curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
-     https://api.github.com/repos/Shizuka-Yuu/arknights-recruitment-checker/dispatches \
-     -d '{"ref": "main", "inputs": {"optimize_images": "true"}}'
-   ```
-
-2. **自動最適化**:
-   mainブランチにpushすると、GitHub Actionsが自動で画像最適化を実行します
-
-### 最適化内容
-- **WebP変換**: 画像をWebP形式に変換してファイルサイズを削減
-- **リサイズ**: 80x80pxに統一して表示速度を向上
-- **バックアップ**: 元の画像を安全に保管
-- **自動デプロイ**: 最適化された画像を自動でデプロイ
-
-### 技術的効果
-- ✅ **表示速度向上**: 画像ファイルサイズの削減
-- ✅ **レート制限対策**: GitHub Pagesの負荷軽減
-- ✅ **ユーザー体験**: より速いページ読み込み
-- ✅ **運用効率**: 自動化による手動作業の削減
-
----
-
-## 📝 GitHub Actionsのログ出力制限について
-
-### 問題点
-GitHub Actionsではログ出力に制限があり、3000行以上のエラーが出力されると処理が中断される場合があります。
-
-### 対応策
-1. **ログの最適化**: 不要なログ出力を削減
-2. **エラーハンドリング**: 重大なエラーのみを通知
-3. **ジョブ分割**: 大規模な変更は複数のジョブに分割
-
-### 現在のワークフロー
-- **deploy.yml**: ログ出力を最適化したバージョン
-- **optimize-images.yml**: 画像最適化専用のワークフロー
-
-### 今後の対応
-- **監視**: GitHub Actionsの実行ログを定期的に確認
-- **必要に応じて**: エラーが発生した場合に適切な対応を実施
-- **段階的改善**: 徐々にワークフローを改善
 
 ---
 

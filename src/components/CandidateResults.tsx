@@ -115,7 +115,7 @@ export const CandidateResults: React.FC<CandidateResultsProps> = ({ combos, char
   }, {} as Record<string, string[][]>)
 
   // 有効な組み合わせの総数を計算
-  const validCombosCount = Object.entries(groupedCombos).reduce((total, [tagCount, groupCombos]) => {
+  const validCombosCount = Object.entries(groupedCombos).reduce((total, [, groupCombos]) => {
     const validCombos = groupCombos.filter((combo) => {
       const comboCharacters = characters.filter(character =>
         combo.every(tag => {

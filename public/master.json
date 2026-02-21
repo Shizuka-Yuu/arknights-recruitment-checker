@@ -1,0 +1,1361 @@
+[
+  {
+    "rarity": "6",
+    "icon": "saga_icon.png",
+    "name": "サガ",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "火力,COST回復",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "siege_icon.png",
+    "name": "シージ",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "火力,COST回復",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_bagpipe.png",
+    "name": "バグパイプ",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "火力,COST回復",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "silveash_icon.png",
+    "name": "シルバーアッシュ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,支援",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "skadi_icon.png",
+    "name": "スカジ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_surtr.png",
+    "name": "スルト",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_thorns.png",
+    "name": "ソーンズ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,防御",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_ch'en.png",
+    "name": "チェン",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,爆発力",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_blaze.png",
+    "name": "ブレイズ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_hellagur.png",
+    "name": "ヘラグ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_mountain.png",
+    "name": "マウンテン",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "saria_icon.png",
+    "name": "サリア",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御,治療,支援",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_blemishine.png",
+    "name": "ブレミシャイン",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "火力,防御,治療",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "hoshiguma_icon.png",
+    "name": "ホシグマ",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "火力,防御",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_mudrock.png",
+    "name": "マドロック",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "生存,防御,火力",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_eunectes.png",
+    "name": "ユーネクテス",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "火力,生存,防御",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "archetto_icon.png",
+    "name": "アルケット",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "exusiai_icon.png",
+    "name": "エクシア",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_schwarz.png",
+    "name": "シュヴァルツ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_rosa.png",
+    "name": "ロサ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力,牽制",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "ifrit_icon.png",
+    "name": "イフリータ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "範囲攻撃,弱化",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_ceobe.png",
+    "name": "ケオベ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "火力,牽制",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "passenger_icon.png",
+    "name": "パッセンジャー",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_mostima.png",
+    "name": "モスティマ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "支援,範囲攻撃,牽制",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "shining_icon.png",
+    "name": "シャイニング",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療,支援",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "nightingale_icon.png",
+    "name": "ナイチンゲール",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療,支援",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "magallan_icon.png",
+    "name": "マゼラン",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "火力,支援,減速",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_suzuran.png",
+    "name": "スズラン",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "火力,支援,減速",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_aak.png",
+    "name": "ア",
+    "class": "特殊",
+    "position": "遠距離",
+    "tags": "火力,支援",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_phantom.png",
+    "name": "ファントム",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "火力,牽制,高速再配置",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "6",
+    "icon": "icon_weedy.png",
+    "name": "ウィーディ",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "火力,強制移動,牽制",
+    "special": "上級エリート_must"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_chiave.png",
+    "name": "キアーベ",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "火力,COST回復",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_zima.png",
+    "name": "ズィマー",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "支援,COST回復",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "texas_icon.png",
+    "name": "テキサス",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "牽制,COST回復",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_reed.png",
+    "name": "リード",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "火力,COST回復",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_elysium.png",
+    "name": "エリジウム",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "支援,COST回復",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_astesia.png",
+    "name": "アステシア",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,防御",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_indra.png",
+    "name": "インドラ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "specter_icon.png",
+    "name": "スペクター",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "生存,範囲攻撃",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_swire.png",
+    "name": "スワイヤー",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,支援",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "flint_icon.png",
+    "name": "フリント",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_broca.png",
+    "name": "ブローカ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "生存,範囲攻撃",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_ayerscarpe.png",
+    "name": "エアースカーペ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,範囲攻撃",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "vulcan_icon.png",
+    "name": "ヴァルカン",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "火力,生存,防御",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_hung.png",
+    "name": "ウン",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御,治療",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "croissant_icon.png",
+    "name": "クロワッサン",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御,強制移動",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "nearl_icon.png",
+    "name": "ニアール",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御,治療",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "liskarm_icon.png",
+    "name": "リスカム",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "火力,防御",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_asbestos.png",
+    "name": "アスベストス",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "火力,防御",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_aosta.png",
+    "name": "アオスタ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "範囲攻撃",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_bluepoison.png",
+    "name": "アズリウス",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_andreana.png",
+    "name": "アンドレアナ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力,減速",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_executor.png",
+    "name": "イグゼキュター",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "範囲攻撃",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_april.png",
+    "name": "エイプリル",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_greythroat.png",
+    "name": "グレースロート",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_sesa.png",
+    "name": "シェーシャ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "範囲攻撃,弱化",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "toddifons_icon.png",
+    "name": "トギフォンス",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "firewatch_icon.png",
+    "name": "ファイヤーウォッチ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力,爆発力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "platinum_icon.png",
+    "name": "プラチナ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "provence_icon.png",
+    "name": "プロヴァンス",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "meteorite_icon.png",
+    "name": "メテオリーテ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "範囲攻撃,弱化",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "iris_icon.png",
+    "name": "アイリス",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "nightmare_icon.png",
+    "name": "ナイトメア",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "火力,治療,減速",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "beeswax_icon.png",
+    "name": "ビーズワクス",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "防御,範囲攻撃",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_leizi.png",
+    "name": "レイズ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_leonhardt.png",
+    "name": "レオンハルト",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "範囲攻撃,爆発力",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_whisperain.png",
+    "name": "ウィスパーレイン",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_silence.png",
+    "name": "サイレンス",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "ptilopsis_icon.png",
+    "name": "フィリオプシス",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療,支援",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "warfarin_icon.png",
+    "name": "ワルファリン",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療,支援",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_istina.png",
+    "name": "イースチナ",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "火力,減速",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_glaucus.png",
+    "name": "グラウコス",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "減速,牽制",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_shamare.png",
+    "name": "シャマレ",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "弱化",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "pramanix_icon.png",
+    "name": "プラマニクス",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "弱化",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "mayer_icon.png",
+    "name": "メイヤー",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "牽制,召喚",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "tsukinogi_icon.png",
+    "name": "ツキノギ",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "生存,支援",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_mr.nothing.png",
+    "name": "ウユウ",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "火力,高速再配置",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "feater_icon.png",
+    "name": "エフイーター",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "減速,強制移動",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "kafka_icon.png",
+    "name": "カフカ",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "牽制,高速再配置",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "cliffheart_icon.png",
+    "name": "クリフハート",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "火力,強制移動",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "manticore_icon.png",
+    "name": "マンティコア",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "projektred_icon.png",
+    "name": "レッド",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "牽制,高速再配置",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "icon_waaifu.png",
+    "name": "ワイフー",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "弱化,高速再配置",
+    "special": "エリート"
+  },
+  {
+    "rarity": "4",
+    "icon": "vigna_icon.png",
+    "name": "ヴィグナ",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "火力,COST回復",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "scavenger_icon.png",
+    "name": "スカベンジャー",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "火力,COST回復",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "myrtle_icon.png",
+    "name": "テンニンカ",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "治療,COST回復",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "beanstalk_icon.png",
+    "name": "ビーンストーク",
+    "class": "先鋒",
+    "position": "遠距離",
+    "tags": "COST回復,召喚",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_arene.png",
+    "name": "アレーン",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_utage.png",
+    "name": "ウタゲ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "estelle_icon.png",
+    "name": "エステル",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "生存,範囲攻撃",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_cutter.png",
+    "name": "カッター",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,爆発力",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_jackie.png",
+    "name": "ジャッキー",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "dobermann_icon.png",
+    "name": "ドーベルマン",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,支援",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "beehunter_icon.png",
+    "name": "ビーハンター",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "frostleaf_icon.png",
+    "name": "フロストリーフ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,減速",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "matoimaru_icon.png",
+    "name": "マトイマル",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "mousse_icon.png",
+    "name": "ムース",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "cuora_icon.png",
+    "name": "クオーラ",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_gummy.png",
+    "name": "グム",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御,治療",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_bubble.png",
+    "name": "バブル",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "matterhorn_icon.png",
+    "name": "マッターホルン",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_aciddrop.png",
+    "name": "アシッドドロップ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_ambriel.png",
+    "name": "アンブリエル",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力,減速",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "vermeil_icon.png",
+    "name": "ヴァーミル",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "jessica_icon.png",
+    "name": "ジェシカ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力,生存",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_shirayuki.png",
+    "name": "シラユキ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "範囲攻撃,減速",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "pinecone_icon.png",
+    "name": "パインコーン",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "範囲攻撃,火力",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_may.png",
+    "name": "メイ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力,減速",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_meteor.png",
+    "name": "メテオ",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力,弱化",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "gitano_icon.png",
+    "name": "ギターノ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "範囲攻撃",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "greyy_icon.png",
+    "name": "グレイ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "範囲攻撃,減速",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "haze_icon.png",
+    "name": "ヘイズ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "火力,弱化",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_click.png",
+    "name": "カシャ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "火力,牽制",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_sussurro.png",
+    "name": "ススーロ",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_purestream.png",
+    "name": "セイリュウ",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療,支援",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "perfumer_icon.png",
+    "name": "パフューマー",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "myrrh_icon.png",
+    "name": "ミルラ",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_earthspirit.png",
+    "name": "アーススピリット",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "減速",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_podenco.png",
+    "name": "ポデンコ",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "治療,減速",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "gravel_icon.png",
+    "name": "グラベル",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "防御,高速再配置",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "icon_jaye.png",
+    "name": "ジェイ",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "火力,高速再配置",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "shaw_icon.png",
+    "name": "ショウ",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "強制移動",
+    "special": ""
+  },
+  {
+    "rarity": "4",
+    "icon": "rope_icon.png",
+    "name": "ロープ",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "強制移動",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "vanilla_icon.png",
+    "name": "バニラ",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "COST回復",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "fang_icon.png",
+    "name": "フェン",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "COST回復",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "icon_plume.png",
+    "name": "プリュム",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "火力,COST回復",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "icon_popukar.png",
+    "name": "ポプカル",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "生存,範囲攻撃",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "midnight_icon.png",
+    "name": "ミッドナイト",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "melantha_icon.png",
+    "name": "メランサ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "icon_spot.png",
+    "name": "スポット",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御,治療",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "beagle_icon.png",
+    "name": "ビーグル",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "icon_adnachiel.png",
+    "name": "アドナキエル",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "catapult_icon.png",
+    "name": "カタパルト",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "範囲攻撃",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "icon_kroos.png",
+    "name": "クルース",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "icon_steward.png",
+    "name": "スチュワード",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "火力",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "icon_lava.png",
+    "name": "ラヴァ",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "範囲攻撃",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "ansel_icon.png",
+    "name": "アンセル",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "hibiscus_icon.png",
+    "name": "ハイビスカス",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療",
+    "special": ""
+  },
+  {
+    "rarity": "3",
+    "icon": "orchid_icon.png",
+    "name": "オーキッド",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "減速",
+    "special": ""
+  },
+  {
+    "rarity": "2",
+    "icon": "yato_icon.png",
+    "name": "ヤトウ",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "初期",
+    "special": ""
+  },
+  {
+    "rarity": "2",
+    "icon": "noircorne_icon.png",
+    "name": "ノイルホーン",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "初期",
+    "special": ""
+  },
+  {
+    "rarity": "2",
+    "icon": "rangers_icon.png",
+    "name": "レンジャー",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "初期",
+    "special": ""
+  },
+  {
+    "rarity": "2",
+    "icon": "12f_icon.png",
+    "name": "12F",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "初期",
+    "special": ""
+  },
+  {
+    "rarity": "2",
+    "icon": "durin_icon.png",
+    "name": "ドゥリン",
+    "class": "術師",
+    "position": "遠距離",
+    "tags": "初期",
+    "special": ""
+  },
+  {
+    "rarity": "1",
+    "icon": "confess-47_icon.png",
+    "name": "CONFESS-47",
+    "class": "先鋒",
+    "position": "近距離",
+    "tags": "牽制,ロボット",
+    "special": ""
+  },
+  {
+    "rarity": "1",
+    "icon": "icon_castle-3.png",
+    "name": "Castle-3",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "支援,ロボット",
+    "special": ""
+  },
+  {
+    "rarity": "1",
+    "icon": "friston-3_icon.png",
+    "name": "Friston-3",
+    "class": "重装",
+    "position": "近距離",
+    "tags": "防御,ロボット",
+    "special": ""
+  },
+  {
+    "rarity": "1",
+    "icon": "justiceknight_icon.png",
+    "name": "ジャスティスナイト",
+    "class": "狙撃",
+    "position": "遠距離",
+    "tags": "支援,ロボット",
+    "special": ""
+  },
+  {
+    "rarity": "1",
+    "icon": "icon_lancet-2.png",
+    "name": "Lancet-2",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療,ロボット",
+    "special": ""
+  },
+  {
+    "rarity": "1",
+    "icon": "phonor-0_icon.png",
+    "name": "PhonoR-0",
+    "class": "補助",
+    "position": "遠距離",
+    "tags": "元素,ロボット",
+    "special": ""
+  },
+  {
+    "rarity": "1",
+    "icon": "icon_thermal-ex.png",
+    "name": "THRM-EX",
+    "class": "特殊",
+    "position": "近距離",
+    "tags": "爆発力,ロボット",
+    "special": ""
+  }
+]

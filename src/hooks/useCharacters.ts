@@ -8,7 +8,7 @@ export const useCharacters = () => {
   useEffect(() => {
     const loadCharacters = async () => {
       try {
-        const response = await fetch('/master.json')
+        const response = await fetch('https://arknight-data-backend.shizuka-y.workers.dev/')
         const data = await response.json()
         setCharacters(data)
       } catch (error) {

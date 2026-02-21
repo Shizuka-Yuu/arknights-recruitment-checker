@@ -9,10 +9,11 @@ interface CandidateResultsProps {
 }
 
 const tryImagePaths = (iconName: string): string[] => {
+  const basePath = import.meta.env.BASE_URL || '/'
   const paths = [
-    `/images/${iconName}`, // 元のファイル名（プレフィックスなし）
-    `/images/icon_${iconName.replace('.png', '')}.png`, // icon_プレフィックス付き
-    `/images/${iconName.replace('.png', '')}_icon.png`, // _iconサフィックス付き
+    `${basePath}images/${iconName}`, // 元のファイル名（プレフィックスなし）
+    `${basePath}images/icon_${iconName.replace('.png', '')}.png`, // icon_プレフィックス付き
+    `${basePath}images/${iconName.replace('.png', '')}_icon.png`, // _iconサフィックス付き
   ]
   return paths
 }

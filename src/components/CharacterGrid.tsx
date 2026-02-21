@@ -8,11 +8,12 @@ interface CharacterGridProps {
 }
 
 const tryImagePaths = (iconName: string): string[] => {
+  const basePath = import.meta.env.BASE_URL || '/'
   const paths = [
-    `/images/${iconName}`, // 元のファイル名（プレフィックスなし）
-    `/images/${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // プレフィックス削除
-    `/images/img_${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // img_プレフィックス追加
-    `/images/icon_${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // icon_プレフィックス追加
+    `${basePath}images/${iconName}`, // 元のファイル名（プレフィックスなし）
+    `${basePath}images/${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // プレフィックス削除
+    `${basePath}images/img_${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // img_プレフィックス追加
+    `${basePath}images/icon_${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // icon_プレフィックス追加
   ]
   
   // 重複を除去

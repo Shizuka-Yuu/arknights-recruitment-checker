@@ -10,11 +10,14 @@ interface GuaranteedResultsProps {
 
 const tryImagePaths = (iconName: string): string[] => {
   const basePath = import.meta.env.BASE_URL || '/'
+  const cleanName = iconName.replace(/^img_/, '').replace(/^icon_/, '').replace(/\.png$/, '')
+  
   const paths = [
-    `${basePath}images/${iconName}`, // 元のファイル名（プレフィックスなし）
-    `${basePath}images/${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // プレフィックス削除
-    `${basePath}images/img_${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // img_プレフィックス追加
-    `${basePath}images/icon_${iconName.replace(/^img_/, '').replace(/^icon_/, '')}`, // icon_プレフィックス追加
+    `${basePath}images/${iconName}`, // 元のファイル名（プレフィックスあり）
+    `${basePath}images/${cleanName}.png`, // プレフィックスなし
+    `${basePath}images/${cleanName}_icon.png`, // _iconサフィックス付き
+    `${basePath}images/img_${cleanName}.png`, // img_プレフィックス付き
+    `${basePath}images/icon_${cleanName}.png`, // icon_プレフィックス付き
   ]
   
   // 重複を除去

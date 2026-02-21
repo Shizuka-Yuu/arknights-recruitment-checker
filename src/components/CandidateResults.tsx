@@ -10,12 +10,16 @@ interface CandidateResultsProps {
 
 const tryImagePaths = (iconName: string): string[] => {
   const basePath = import.meta.env.BASE_URL || '/'
+  const cleanName = iconName.replace(/^img_/, '').replace(/^icon_/, '').replace(/\.png$/, '')
+  
   const paths = [
-    `${basePath}images/${iconName}`, // 元のファイル名（プレフィックスなし）
-    `${basePath}images/icon_${iconName.replace('.png', '')}.png`, // icon_プレフィックス付き
-    `${basePath}images/${iconName.replace('.png', '')}_icon.png`, // _iconサフィックス付き
+    `${basePath}images/${iconName}`, // 元のファイル名（プレフィックスあり）
+    `${basePath}images/${cleanName}.png`, // プレフィックスなし
+    `${basePath}images/${cleanName}_icon.png`, // _iconサフィックス付き
+    `${basePath}images/img_${cleanName}.png`, // img_プレフィックス付き
+    `${basePath}images/icon_${cleanName}.png`, // icon_プレフィックス付き
   ]
-  return paths
+  return [...new Set(paths)]
 }
 
 const CharacterImage: React.FC<{ character: Character; size: number }> = ({ character, size }) => {

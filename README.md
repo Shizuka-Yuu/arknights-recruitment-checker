@@ -37,7 +37,7 @@ Arknights（アークナイツ）の公開求人でキャラクターを検索�
 - **Frontend**: React 18 + TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
-- **Deployment**: GitHub Pages
+- **Deployment**: GitHub Pages + GitHub Actions CI/CD
 
 ## 📦 インストールと実行
 
@@ -45,7 +45,7 @@ Arknights（アークナイツ）の公開求人でキャラクターを検索�
 
 ```bash
 # リポジトリをクローン
-git clone https://github.com/[username]/[repository-name].git
+git clone https://github.com/Shizuka-Yuu/arknights-recruitment-checker.git
 cd [repository-name]
 
 # 依存関係をインストール
@@ -63,8 +63,11 @@ npm run dev
 # プロダクションビルド
 npm run build
 
-# GitHub Pagesにデプロイ
+# GitHub Pagesにデプロイ（手動）
 npm run deploy
+
+# GitHub Pagesにデプロイ（自動）
+git push origin main  # GitHub Actionsが自動でデプロイ
 ```
 
 ## 🎨 デザイン機能
@@ -131,6 +134,10 @@ src/
 4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
 5. プルリクエストを作成
 
+## 🌐 デモ
+
+[GitHub Pagesで公開中](https://shizuka-yuu.github.io/arknights-recruitment-checker/)
+
 ## 📝 ライセンス
 
 このプロジェクトはMITライセンスの下で公開されています。
@@ -145,7 +152,38 @@ src/
 
 - [Arknights公式サイト](https://www.arknights.jp/)
 - [Arknights Wiki](https://arknights.wikiru.jp/)
-- [GitHubリポジトリ](https://github.com/[username]/[repository-name])
+- [GitHubリポジトリ](https://github.com/Shizuka-Yuu/arknights-recruitment-checker)
+
+---
+
+## 🚀 画像最適化機能
+
+### 概要
+150個以上の画像ファイルを含むプロジェクトで、GitHub Pagesのレート制限を超過する可能性があります。画像最適化ワークフローを導入して、この問題を解決します。
+
+### 使用方法
+1. **手動最適化**:
+   ```bash
+   # GitHub Actionsで実行
+   curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+     https://api.github.com/repos/Shizuka-Yuu/arknights-recruitment-checker/dispatches \
+     -d '{"ref": "main", "inputs": {"optimize_images": "true"}}'
+   ```
+
+2. **自動最適化**:
+   mainブランチにpushすると、GitHub Actionsが自動で画像最適化を実行します
+
+### 最適化内容
+- **WebP変換**: 画像をWebP形式に変換してファイルサイズを削減
+- **リサイズ**: 80x80pxに統一して表示速度を向上
+- **バックアップ**: 元の画像を安全に保管
+- **自動デプロイ**: 最適化された画像を自動でデプロイ
+
+### 技術的効果
+- ✅ **表示速度向上**: 画像ファイルサイズの削減
+- ✅ **レート制限対策**: GitHub Pagesの負荷軽減
+- ✅ **ユーザー体験**: より速いページ読み込み
+- ✅ **運用効率**: 自動化による手動作業の削減
 
 ---
 

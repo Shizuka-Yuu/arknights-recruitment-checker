@@ -1,0 +1,44 @@
+name: Optimize image loading
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  optimize-images:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.optimize_images == 'true'
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Optimize images
+      run: |
+        # 画像をWebP形式に変換してサイズを削減
+        mkdir -p dist/images-optimized
+        find public/images -name "*.png" -exec convert {} -quality 85 -strip {} \; -resize 80x80\> -write dist/images-optimized/{} \;
+        
+        # 最適化された画像を元の場所にコピー
+        find dist/images-optimized -name "*.png" -exec cp {} dist/images/optimized/{} \;
+        
+        # 元の画像をバックアップ
+        mkdir -p dist/images-backup
+        find public/images -name "*.png" -exec cp {} dist/images-backup/{} \;
+        
+        # 元の画像を削除して最適化画像を使用
+        find public/images -name "*.png" -exec rm {} \;
+        
+        # 最適化画像を元の場所に移動
+        find dist/images-optimized -name "*.png" -exec mv {} public/images/{} \;
+        
+        # 一時ディレクトリを削除
+        rm -rf dist/images-optimized
+        
+        echo "画像最適化完了: $(find public/images -name "*.png" | wc -l) ファイル"
+        
+    - name: Deploy optimized
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist

@@ -7,6 +7,7 @@ import { Header } from './components/Header'
 import { TagSelector } from './components/TagSelector'
 import { CharacterGrid } from './components/CharacterGrid'
 import { AllCombinationResults } from './components/AllCombinationResults'
+import { ScrollToTop } from './components/ScrollToTop'
 import './App.css'
 
 function AppContent() {
@@ -82,6 +83,7 @@ function AppContent() {
           </div>
         </div>
       </div>
+      <ScrollToTop />
     </div>
   )
 }

@@ -37,12 +37,28 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
     const isDisabled = isMaxReached && !isSelected
     
     if (isSelected) {
-      return 'bg-blue-500 text-white hover:bg-blue-600 border-blue-500'
+      return 'bg-blue-500 text-white border-blue-500'
     }
     if (isDisabled) {
-      return 'bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200'
+      return theme === 'dark' 
+        ? 'bg-gray-700 text-gray-400 border-gray-600'
+        : 'bg-gray-100 text-gray-400 border-gray-200'
     }
-    return 'bg-white text-gray-700 hover:bg-gray-50 border-gray-300'
+    return theme === 'dark'
+      ? 'bg-gray-700 text-gray-200 border-gray-500'
+      : 'bg-white text-gray-700 border-gray-300'
+  }
+
+  const getTooltipText = (tag: string) => {
+    const isDisabled = isMaxReached && !selectedTags.includes(tag)
+    return isDisabled 
+      ? (language === 'ja' ? '最大5タグまで選択できます' : 'Maximum 5 tags can be selected')
+      : (language === 'ja' ? `${getTagName(tag, language)}を選択` : `Select ${getTagName(tag, language)}`)
+  }
+
+  const getCursorClass = (tag: string) => {
+    const isDisabled = isMaxReached && !selectedTags.includes(tag)
+    return isDisabled ? 'cursor-not-allowed' : 'cursor-pointer'
   }
 
   const handleTagClick = (tag: string) => {
@@ -91,16 +107,35 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
   const selectionStatus = getSelectionStatus()
 
   return (
-    <div className="space-y-4 p-4 rounded-lg shadow" style={{ backgroundColor: 'var(--bg-secondary)', color: 'var(--text-primary)' }}>
-      <div className="flex justify-between items-center">
+    <div className="space-y-4 p-4 rounded-lg shadow relative" style={{ backgroundColor: 'var(--bg-secondary)', color: 'var(--text-primary)', zIndex: 1 }}>
+      <div className="flex justify-between items-center relative" style={{ zIndex: 2 }}>
         <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>{ui.tagSelection}</h2>
-        <button
-          onClick={onClearAll}
-          className="px-4 py-2 text-sm rounded hover:opacity-90 transition-opacity"
-          style={{ backgroundColor: '#ef4444', color: 'white' }}
-        >
-          {ui.clearAll}
-        </button>
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={onClearAll}
+            className="px-2 py-1 text-xs font-medium hover:opacity-90 transition-opacity cursor-pointer"
+            style={{ 
+              backgroundColor: '#0196d9',
+              color: 'white',
+              borderRadius: '4px'
+            }}
+            title={ui.clearAll}
+          >
+            {language === 'ja' ? 'タグをリセット' : 'Reset Tags'}
+          </button>
+          <button
+            onClick={onClearAll}
+            className="h-8 w-8 flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer"
+            style={{ backgroundColor: 'transparent' }}
+            title={ui.clearAll}
+          >
+            <img 
+              src={`${import.meta.env.BASE_URL || '/'}images/ui/reset_btn.png`} 
+              alt={ui.clearAll} 
+              className="h-full w-full object-contain"
+            />
+          </button>
+        </div>
       </div>
 
       {/* 選択ステータス */}
@@ -153,10 +188,10 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
             <div className="flex flex-wrap gap-2">
               {TAG_CATEGORIES.type.map(tag => (
                 <button
-                  key={tag}
+                  title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-full border transition-colors ${getTagColor(tag)}`}
+                  className={`px-3 py-2 text-sm rounded-sm border transition-colors ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -170,10 +205,10 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
             <div className="flex flex-wrap gap-2">
               {TAG_CATEGORIES.position.map(tag => (
                 <button
-                  key={tag}
+                  title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-full border transition-colors ${getTagColor(tag)}`}
+                  className={`px-3 py-2 text-sm rounded-sm border transition-colors ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -187,10 +222,10 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
             <div className="flex flex-wrap gap-2">
               {TAG_CATEGORIES.tags.map(tag => (
                 <button
-                  key={tag}
+                  title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-full border transition-colors ${getTagColor(tag)}`}
+                  className={`px-3 py-2 text-sm rounded-sm border transition-colors ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -204,10 +239,10 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
             <div className="flex flex-wrap gap-2">
               {TAG_CATEGORIES.confirmed.map(tag => (
                 <button
-                  key={tag}
+                  title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-full border transition-colors ${getTagColor(tag)}`}
+                  className={`px-3 py-2 text-sm rounded-sm border transition-colors ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -234,7 +269,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           <div className="flex flex-wrap gap-1">
             {selectedTags.map(tag => (
               <span
-                key={tag}
+                title={getTooltipText(tag)}
                 className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded flex items-center gap-1"
               >
                 {getTagName(tag, language)}

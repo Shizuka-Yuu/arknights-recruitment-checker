@@ -61,15 +61,19 @@ export const CharacterGrid: React.FC<CharacterGridProps> = ({ characters }) => {
           className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getRarityColor(character.rarity)}`}
         >
           <div className="w-[85px] h-[85px] flex items-center justify-center overflow-hidden flex-shrink-0">
-            <a 
-              href={`https://arknights.wikiru.jp/?${encodeURIComponent(getCharacterName(character.icon.replace('.png', ''), 'ja'))}`}
+            <a
+              href={`https://arknights.fandom.com/wiki/${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full h-full flex items-center justify-center"
+              className="w-full h-full flex items-center justify-center cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation()
                 console.log('Icon clicked:', getCharacterName(character.icon.replace('.png', ''), 'ja'))
               }}
+              title={language === 'ja' 
+                ? `${getCharacterName(character.icon.replace('.png', ''), 'ja')}のWikiを開く` 
+                : `Open ${getCharacterName(character.icon.replace('.png', ''), 'en')} Wiki`
+              }
             >
               <CharacterImage character={character} />
             </a>

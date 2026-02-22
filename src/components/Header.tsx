@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useApp } from '../contexts/AppContext'
 import { getUIText, type Language } from '../constants/dictionary'
+import { InfoModal } from './InfoModal'
 
 export const Header: React.FC = () => {
   const { language, setLanguage, theme, setTheme } = useApp()
   const ui = getUIText(language)
-  const [showInfoModal, setShowInfoModal] = useState(false)
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
 
   const handleLanguageChange = (newLanguage: Language) => {
     setLanguage(newLanguage)
@@ -34,7 +35,7 @@ export const Header: React.FC = () => {
           <button
             className="h-9 w-9 flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer"
             style={{ backgroundColor: 'transparent' }}
-            onClick={() => setShowInfoModal(true)}
+            onClick={() => setIsInfoModalOpen(true)}
             title={language === 'ja' ? '使い方・仕様について' : 'About usage & specifications'}
           >
             <img 
@@ -124,6 +125,9 @@ export const Header: React.FC = () => {
           </p>
         </div>
       </div>
+      
+      {/* Info Modal */}
+      <InfoModal isOpen={isInfoModalOpen} onClose={() => setIsInfoModalOpen(false)} />
     </header>
   )
 }

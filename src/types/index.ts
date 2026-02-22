@@ -19,6 +19,14 @@ export interface SearchResult {
   characters: Character[]
   guaranteedCombos?: string[][]
   candidateCombos?: string[][] // 星3を含む星4~5候補
+  allCombos?: ComboResult[] // キャラクター数昇順のフラットな配列
+  guaranteedResults?: ComboResult[] // 確定結果の詳細
+}
+
+export interface ComboResult {
+  combo: string[]
+  characters: Character[]
+  isGuaranteed: boolean
 }
 
 export interface RecruitmentState {

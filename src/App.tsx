@@ -6,8 +6,7 @@ import { getUIText } from './constants/dictionary'
 import { Header } from './components/Header'
 import { TagSelector } from './components/TagSelector'
 import { CharacterGrid } from './components/CharacterGrid'
-import { GuaranteedResults } from './components/GuaranteedResults'
-import { CandidateResults } from './components/CandidateResults'
+import { AllCombinationResults } from './components/AllCombinationResults'
 import './App.css'
 
 function AppContent() {
@@ -52,6 +51,8 @@ function AppContent() {
             selectedTags={selectedTags}
             onTagToggle={handleTagToggle}
             onClearAll={handleClearAll}
+            guaranteedCount={(searchResult.guaranteedResults || []).length}
+            totalCombosCount={(searchResult.allCombos || []).length + (searchResult.guaranteedResults || []).length}
           />
         </div>
         
@@ -65,7 +66,7 @@ function AppContent() {
                 </h3>
                 <CharacterGrid characters={characters} />
               </div>
-            ) : selectedTags.length <= 4 ? (
+            ) : searchResult.characters && searchResult.characters.length > 0 ? (
               <div>
                 <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
                   {ui.results.searchResults(searchResult.characters.length)}
@@ -73,16 +74,10 @@ function AppContent() {
                 <CharacterGrid characters={searchResult.characters} />
               </div>
             ) : (
-              <>
-                <GuaranteedResults 
-                  combos={searchResult.guaranteedCombos || []} 
-                  characters={characters}
-                />
-                <CandidateResults 
-                  combos={searchResult.candidateCombos || []} 
-                  characters={characters}
-                />
-              </>
+              <AllCombinationResults 
+                allCombos={searchResult.allCombos || []}
+                guaranteedResults={searchResult.guaranteedResults || []}
+              />
             )}
           </div>
         </div>

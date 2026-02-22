@@ -6,6 +6,8 @@ interface TagSelectorProps {
   selectedTags: string[]
   onTagToggle: (tag: string) => void
   onClearAll: () => void
+  guaranteedCount?: number
+  totalCombosCount?: number
 }
 
 const TAG_CATEGORIES = {
@@ -21,7 +23,9 @@ const TAG_CATEGORIES = {
 export const TagSelector: React.FC<TagSelectorProps> = ({
   selectedTags,
   onTagToggle,
-  onClearAll
+  onClearAll,
+  guaranteedCount = 0,
+  totalCombosCount = 0
 }) => {
   const { language, theme } = useApp()
   const ui = getUIText(language)
@@ -52,10 +56,36 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
     if (selectedTags.length === 0) {
       return { text: language === 'ja' ? 'タグを選択してください' : 'Please select tags', color: 'text-gray-500' }
     }
-    if (selectedTags.length <= 4) {
-      return { text: ui.selectionStatus.normal(selectedTags.length, maxTags), color: 'text-blue-600' }
+    
+    // 1〜4タグでも結果数を表示
+    if (selectedTags.length < 5) {
+      let message = language === 'ja' 
+        ? `${selectedTags.length}タグ選択中 - 全${totalCombosCount}件の組み合わせ`
+        : `${selectedTags.length} tags selected - ${totalCombosCount} combinations`
+      
+      if (guaranteedCount > 0) {
+        message += language === 'ja' 
+          ? `（確定結果 ${guaranteedCount}件）` 
+          : ` (${guaranteedCount} guaranteed)`
+      }
+      
+      return { text: message, color: guaranteedCount > 0 ? 'text-green-600' : 'text-blue-600' }
     }
-    return { text: ui.selectionStatus.guaranteed, color: 'text-green-600' }
+    
+    // 5タグ選択時の詳細メッセージ
+    let message = language === 'ja' ? '5タグ選択完了！' : '5 tags selected!'
+    
+    if (guaranteedCount > 0) {
+      message += language === 'ja' 
+        ? ` 確定結果 ${guaranteedCount}件 / 全${totalCombosCount}件` 
+        : ` ${guaranteedCount} guaranteed / ${totalCombosCount} total`
+    } else {
+      message += language === 'ja' 
+        ? ` 全${totalCombosCount}件の組み合わせ` 
+        : ` ${totalCombosCount} combinations`
+    }
+    
+    return { text: message, color: guaranteedCount > 0 ? 'text-green-600' : 'text-blue-600' }
   }
 
   const selectionStatus = getSelectionStatus()
@@ -90,8 +120,26 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           )}
         </div>
         {isMaxReached && (
-          <div className="mt-2 text-xs p-2 rounded" style={{ backgroundColor: '#fef3c7', color: '#92400e' }}>
-            {ui.selectionStatus.maxReached}
+          <div className="mt-2 text-xs p-2 rounded" style={{ 
+            backgroundColor: guaranteedCount > 0 ? '#dcfce7' : '#fef3c7', 
+            color: guaranteedCount > 0 ? '#166534' : '#92400e' 
+          }}>
+            <div>
+              {guaranteedCount > 0 
+                ? (language === 'ja' ? '★4以上確定またはロボット確定結果があります！' : '★4+ or Robot guaranteed results found!')
+                : ui.selectionStatus.maxReached
+              }
+              {selectedTags.includes('上級エリート') && (
+                <span className="ml-1">
+                  {language === 'ja' ? '⚠️上級エリート選択中！タグの組合せに注意！' : '⚠️Senior Elite selected! Be careful with tag combinations!'}
+                </span>
+              )}
+              {selectedTags.includes('エリート') && !selectedTags.includes('上級エリート') && (
+                <span className="ml-1">
+                  {language === 'ja' ? '⚠️エリート選択中！タグの組合せに注意！' : '⚠️Elite selected! Be careful with tag combinations!'}
+                </span>
+              )}
+            </div>
           </div>
         )}
       </div>

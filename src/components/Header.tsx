@@ -15,13 +15,13 @@ export const Header: React.FC = () => {
   }
 
   const getThemeIcon = () => {
-    return theme === 'light' ? '🌙' : '☀️'
+    return theme === 'light' ? '☀️' : '🌙'
   }
 
   const getThemeLabel = () => {
     return language === 'ja' 
-      ? (theme === 'light' ? 'ダーク' : 'ライト')
-      : (theme === 'light' ? 'Dark' : 'Light')
+      ? (theme === 'light' ? 'ライト' : 'ダーク')
+      : (theme === 'light' ? 'Light' : 'Dark')
   }
 
   return (

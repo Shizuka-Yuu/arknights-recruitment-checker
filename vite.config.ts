@@ -7,6 +7,16 @@ export default defineConfig({
   base: '/arknights-recruitment-checker/',
   server: {
     host: true,
-    port: 5173
+    port: 5173,
+    fs: {
+      strict: false
+    },
+    watch: {
+      usePolling: true,
+      interval: 100
+    },
+    hmr: {
+      overlay: true
+    }
   }
 })

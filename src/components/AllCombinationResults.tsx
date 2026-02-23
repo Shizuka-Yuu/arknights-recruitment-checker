@@ -78,6 +78,23 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
   const { language } = useApp()
   const [showAllCombos, setShowAllCombos] = useState(false)
 
+  // 確定結果内の最小レアリティを計算
+  const getMinRarityInGuaranteed = () => {
+    if (!guaranteedResults || guaranteedResults.length === 0) return null
+    
+    let minRarity = 6
+    guaranteedResults.forEach(result => {
+      result.characters.forEach(char => {
+        const rarity = parseInt(char.rarity)
+        if (rarity < minRarity) {
+          minRarity = rarity
+        }
+      })
+    })
+    
+    return minRarity
+  }
+
   const getCharacterRarityColor = (rarity: string) => {
     switch (rarity) {
       case '6':
@@ -165,8 +182,35 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
             <h3 className="text-lg font-semibold" style={{ color: '#16a34a' }}>
               {language === 'ja' ? '確定結果' : 'Guaranteed Results'} ({guaranteedResults.length}件)
             </h3>
-            <span className="text-sm" style={{ color: '#15803d' }}>
-              {language === 'ja' ? '★3+確定またはロボ確定' : '★3+ guaranteed or robot guaranteed'}
+            <span className="text-sm" style={{ color: '#16a34a', fontSize: '1rem' }}>
+              {(() => {
+                const minRarity = getMinRarityInGuaranteed()
+                if (minRarity) {
+                  const hasSeniorEliteTag = guaranteedResults.some(result => 
+                    result.combo.includes('上級エリート')
+                  )
+                  const hasEliteTag = guaranteedResults.some(result => 
+                    result.combo.includes('エリート') && !result.combo.includes('上級エリート')
+                  )
+                  
+                  if (hasSeniorEliteTag) {
+                    return language === 'ja' 
+                      ? '上級エリートタグ選択中' 
+                      : 'Senior Elite tag selected'
+                  }
+                  
+                  if (hasEliteTag) {
+                    return language === 'ja' 
+                      ? 'エリートタグ選択中' 
+                      : 'Elite tag selected'
+                  }
+                  
+                  return language === 'ja' 
+                    ? `★${minRarity}+確定結果あり` 
+                    : `★${minRarity}+ guaranteed results available`
+                }
+                return language === 'ja' ? '★3+確定結果あり' : '★3+ guaranteed results available'
+              })()}
             </span>
           </div>
           
@@ -220,14 +264,31 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                 <div className="flex items-start relative">
                   <div className="text-xs text-left" style={{ color: 'var(--text-primary)', textAlign: 'left', display: 'block', width: '100%' }}>
                     {result.combo.length}{language === 'ja' ? 'タグで確定' : ' tags guaranteed'} ({result.characters.length} {language === 'ja' ? 'キャラ' : 'characters'})
-                    {result.combo.includes('高級エリート') && (
+                    {result.combo.includes('上級エリート') && (
                       <span style={{ color: '#dc2626', display: 'block', width: '100%' }}>
                         <span className="font-medium" style={{ display: 'block' }}>
-                          {language === 'ja' ? '9時間設定が必須です' : '9-hour setting is required'}
+                          {language === 'ja' ? '9時間設定が必須条件' : '9-hour setting is required'}
+                        </span>
+                        <span style={{ display: 'block', color: '#dc2626' }}>
+                          {language === 'ja' ? '上級エリート以外の併用タグが消失し（星6内でのランダム抽選になる）可能性あり' : 'Other tags may disappear (random selection within ★6 only)'}
                         </span>
                       </span>
                     )}
-                    {!result.combo.includes('高級エリート') && result.characters.some(char => char.tags.includes('ロボット')) && (
+                    {!result.combo.includes('上級エリート') && result.combo.includes('エリート') && (
+                      <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
+                        <span style={{ display: 'block' }}>
+                          {language === 'ja' ? '9時間設定が必須条件（エリートタグ消失リスクあり）' : '9-hour setting required (elite tag loss risk)'}
+                        </span>
+                      </span>
+                    )}
+                    {!result.combo.includes('上級エリート') && !result.combo.includes('エリート') && !result.characters.some(char => char.tags.includes('ロボット')) && (
+                      <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
+                        <span style={{ display: 'block' }}>
+                          {language === 'ja' ? '9時間設定推奨（レアタグ消失リスクあり）' : '9-hour setting recommended (rare tag loss risk)'}
+                        </span>
+                      </span>
+                    )}
+                    {!result.combo.includes('上級エリート') && result.characters.some(char => char.tags.includes('ロボット')) && (
                       <div className="flex flex-col items-start" style={{ display: 'block', width: '100%' }}>
                         <div className="flex items-center text-xs" style={{ color: 'var(--text-secondary)', display: 'block' }}>
                           <span>{language === 'ja' ? 'ロボット狙い: 3時間50分以下に設定' : 'Robot target: set to 3h50m'}</span>
@@ -237,15 +298,8 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                         </div>
                       </div>
                     )}
-                    {!result.combo.includes('高級エリート') && !result.characters.some(char => char.tags.includes('ロボット')) && (
-                      <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
-                        <span style={{ display: 'block' }}>
-                          {language === 'ja' ? '9時間設定推奨（レアタグ消失リスク）' : '9-hour setting recommended (rare tag loss risk)'}
-                        </span>
-                      </span>
-                    )}
                   </div>
-                  <div className="flex items-center gap-1" style={{ minWidth: '80px', justifyContent: 'flex-end' }}>
+                  <div className="flex items-center gap-1" style={{ minWidth: '80px', justifyContent: 'flex-end', alignSelf: 'flex-end' }}>
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#16a34a' }}></div>
                     <span className="text-xs" style={{ color: '#16a34a' }}>
                       {language === 'ja' ? '確定' : 'Guaranteed'}
@@ -320,7 +374,31 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                 <div className="flex items-start relative">
                   <div className="text-xs text-left" style={{ color: 'var(--text-primary)', textAlign: 'left', display: 'block', width: '100%' }}>
                     {result.combo.length}{language === 'ja' ? 'タグ' : ' tags'} ({result.characters.length} {language === 'ja' ? 'キャラ' : 'characters'})
-                    {filteredCharacters.some(char => char.tags.includes('ロボット')) && (
+                    {result.combo.includes('上級エリート') && (
+                      <span style={{ color: '#dc2626', display: 'block', width: '100%' }}>
+                        <span className="font-medium" style={{ display: 'block' }}>
+                          {language === 'ja' ? '9時間設定が必須条件' : '9-hour setting is required'}
+                        </span>
+                        <span style={{ display: 'block', color: '#dc2626' }}>
+                          {language === 'ja' ? '上級エリート以外の併用タグが消失し（星6内でのランダム抽選になる）可能性あり' : 'Other tags may disappear (random selection within ★6 only)'}
+                        </span>
+                      </span>
+                    )}
+                    {!result.combo.includes('上級エリート') && result.combo.includes('エリート') && (
+                      <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
+                        <span style={{ display: 'block' }}>
+                          {language === 'ja' ? '9時間設定が必須条件（エリートタグ消失リスクあり）' : '9-hour setting required (elite tag loss risk)'}
+                        </span>
+                      </span>
+                    )}
+                    {!result.combo.includes('上級エリート') && !result.combo.includes('エリート') && !filteredCharacters.some(char => char.tags.includes('ロボット')) && (
+                      <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
+                        <span style={{ display: 'block' }}>
+                          {language === 'ja' ? '9時間設定推奨（レアタグ消失リスクあり）' : '9-hour setting recommended (rare tag loss risk)'}
+                        </span>
+                      </span>
+                    )}
+                    {!result.combo.includes('上級エリート') && filteredCharacters.some(char => char.tags.includes('ロボット')) && (
                       <div className="flex flex-col items-start">
                         <div className="flex items-center text-xs" style={{ color: 'var(--text-secondary)' }}>
                           <span>{language === 'ja' ? 'ロボット狙い: 3時間50分以下に設定' : 'Robot target: set to 3h50m'}</span>
@@ -331,7 +409,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center gap-1 absolute right-0 top-0" style={{ minWidth: '80px' }}>
+                  <div className="flex items-center gap-1" style={{ minWidth: '80px', justifyContent: 'flex-end', alignSelf: 'flex-end' }}>
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#6366f1' }}></div>
                     <span className="text-xs" style={{ color: '#6366f1' }}>
                       {language === 'ja' ? '候補' : 'Candidate'}

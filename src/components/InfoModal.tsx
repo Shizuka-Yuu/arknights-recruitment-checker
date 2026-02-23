@@ -156,7 +156,18 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                   </div>
                   <div>
                     <strong>データソース</strong>
-                    <p className="mt-1">アークナイツ攻略 Wikiの公開求人データを使用しています</p>
+                    <p className="mt-1">
+                      <a 
+                        href="https://arknights.wikiru.jp/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 underline"
+                        style={{ color: 'var(--accent-color)' }}
+                      >
+                        アークナイツ攻略 Wiki
+                      </a>
+                      の公開求人データを使用しています
+                    </p>
                   </div>
                 </div>
               </div>
@@ -241,7 +252,18 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                   </div>
                   <div>
                     <strong>Data Source</strong>
-                    <p className="mt-1">Uses public recruitment data from Arknights Strategy Wiki</p>
+                    <p className="mt-1">
+                      Uses public recruitment data from 
+                      <a 
+                        href="https://arknights.wikiru.jp/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:text-blue-800 underline"
+                        style={{ color: 'var(--accent-color)' }}
+                      >
+                        Arknights Strategy Wiki
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>

@@ -95,14 +95,37 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
     // 5タグ選択時の詳細メッセージ
     let message = language === 'ja' ? '5タグ選択完了！' : '5 tags selected!'
     
+    // エリート・上級エリートタグの検出
+    const hasSeniorElite = selectedTags.includes('上級エリート')
+    const hasElite = selectedTags.includes('エリート')
+    
     if (guaranteedCount > 0) {
-      message += language === 'ja' 
-        ? ` 確定結果 ${guaranteedCount}件 / 全${totalCombosCount}件` 
-        : ` ${guaranteedCount} guaranteed / ${totalCombosCount} total`
+      if (hasSeniorElite || hasElite) {
+        message += language === 'ja' 
+          ? ` ${guaranteedCount}件 / 全${totalCombosCount}件` 
+          : ` ${guaranteedCount} / ${totalCombosCount} total`
+      } else {
+        message += language === 'ja' 
+          ? ` ${guaranteedCount}件 / 全${totalCombosCount}件` 
+          : ` ${guaranteedCount} / ${totalCombosCount} total`
+      }
     } else {
       message += language === 'ja' 
-        ? ` 全${totalCombosCount}件の組み合わせ` 
-        : ` ${totalCombosCount} combinations`
+        ? ` 全${totalCombosCount}件` 
+        : ` ${totalCombosCount} total`
+    }
+    
+    // エリート・上級エリート選択時の特別メッセージ
+    if ((hasSeniorElite || hasElite) && guaranteedCount > 0) {
+      const eliteMessage = hasSeniorElite 
+        ? (language === 'ja' ? '⚠️上級エリート選択中！' : '⚠️Senior Elite selected!')
+        : (language === 'ja' ? '⚠️エリート選択中！' : '⚠️Elite selected!')
+      
+      message += ` ${eliteMessage} ★4以上の確定結果があります！`
+    } else if (guaranteedCount > 0) {
+      message += language === 'ja' 
+        ? ' ★4以上の確定結果があります！' 
+        : ' ★4+ guaranteed results available!'
     }
     
     return { text: message, color: guaranteedCount > 0 ? 'text-green-600' : 'text-blue-600' }
@@ -191,29 +214,6 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
             </span>
           )}
         </div>
-        {isMaxReached && (
-          <div className="mt-2 text-xs p-2 rounded" style={{ 
-            backgroundColor: guaranteedCount > 0 ? '#dcfce7' : '#fef3c7', 
-            color: guaranteedCount > 0 ? '#166534' : '#92400e' 
-          }}>
-            <div>
-              {guaranteedCount > 0 
-                ? (language === 'ja' ? '★4以上確定またはロボット確定結果があります！' : '★4+ or Robot guaranteed results found!')
-                : ui.selectionStatus.maxReached
-              }
-              {selectedTags.includes('上級エリート') && (
-                <span className="ml-1">
-                  {language === 'ja' ? '⚠️上級エリート選択中！タグの組合せに注意！' : '⚠️Senior Elite selected! Be careful with tag combinations!'}
-                </span>
-              )}
-              {selectedTags.includes('エリート') && !selectedTags.includes('上級エリート') && (
-                <span className="ml-1">
-                  {language === 'ja' ? '⚠️エリート選択中！タグの組合せに注意！' : '⚠️Elite selected! Be careful with tag combinations!'}
-                </span>
-              )}
-            </div>
-          </div>
-        )}
       </div>
 
       <div className="space-y-3">

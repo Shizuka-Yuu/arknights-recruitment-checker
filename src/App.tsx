@@ -60,7 +60,7 @@ function AppContent() {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }} className="theme-transition">
-      <div className="container mx-auto px-4 py-6 theme-transition">
+      <div className="container mx-auto px-2 py-6 theme-transition">
         {/* ヘッダー */}
         <Header />
         

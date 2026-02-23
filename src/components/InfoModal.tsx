@@ -66,11 +66,29 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors cursor-pointer"
+            className="cursor-pointer"
             title={language === 'ja' ? '閉じる' : 'Close'}
+            style={{ 
+              color: 'var(--text-tertiary) !important',
+              backgroundColor: 'transparent !important',
+              border: 'none !important',
+              padding: '4px',
+              borderRadius: '4px',
+              transition: 'color 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--text-primary) !important'
+              const svg = e.currentTarget.querySelector('svg')
+              if (svg) svg.style.stroke = 'var(--text-primary) !important'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--text-tertiary) !important'
+              const svg = e.currentTarget.querySelector('svg')
+              if (svg) svg.style.stroke = 'var(--text-tertiary) !important'
+            }}
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" style={{ stroke: 'var(--text-tertiary) !important', strokeWidth: '2px' }}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -87,10 +105,16 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                     <strong>上級エリートを含む9時間設定</strong>：「上級エリート」のみが保護されます
                   </div>
                   <div>
+                    <strong>エリートを含む9時間設定</strong>：「エリート」のみが保護されます
+                  </div>
+                  <div>
                     <strong>上級エリートを含む組み合わせ</strong>：9時間設定で星6が確定します
                   </div>
                   <div>
-                    <strong>※注意</strong>：併用したタグが消失し、対象の星6オペレーターを一点狙いできない（星6内でのランダム抽選になる）可能性は僅かに残ります
+                    <strong>エリートを含む組み合わせ</strong>：9時間設定で星5が確定します
+                  </div>
+                  <div>
+                    <strong>※注意</strong>：併用したタグが消失し、対象オペレーターを一点狙いできない（該当レアリティ内でのランダム抽選になる）可能性は僅かに残ります
                   </div>
                 </div>
               </div>
@@ -183,10 +207,16 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                     <strong>9-hour setting with Senior Elite</strong>: Only "Senior Elite" tag is protected
                   </div>
                   <div>
+                    <strong>9-hour setting with Elite</strong>: Only "Elite" tag is protected
+                  </div>
+                  <div>
                     <strong>Combinations with Senior Elite</strong>: 9-hour setting guarantees ★6
                   </div>
                   <div>
-                    <strong>※Note</strong>: There's a small possibility that combined tags may disappear, making it impossible to target a specific ★6 operator (becomes random selection among ★6)
+                    <strong>Combinations with Elite</strong>: 9-hour setting guarantees ★5
+                  </div>
+                  <div>
+                    <strong>※Note</strong>: There's a small possibility that combined tags may disappear, making it impossible to target a specific operator (becomes random selection within the corresponding rarity)
                   </div>
                 </div>
               </div>
@@ -276,8 +306,18 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
         <div className="flex justify-end p-4 border-t border-gray-200 dark:border-gray-700">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md cursor-pointer transition-colors"
-            style={{ backgroundColor: 'var(--bg-secondary)' }}
+            className="px-4 py-2 rounded-md cursor-pointer transition-colors"
+            style={{ 
+              backgroundColor: 'var(--bg-secondary) !important',
+              color: 'var(--text-primary) !important',
+              border: '1px solid var(--border-color) !important'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--bg-tertiary) !important'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--bg-secondary) !important'
+            }}
           >
             {language === 'ja' ? '閉じる' : 'Close'}
           </button>

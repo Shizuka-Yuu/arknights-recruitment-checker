@@ -54,13 +54,13 @@ export const CharacterGrid: React.FC<CharacterGridProps> = ({ characters }) => {
   }
 
   return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-8 2xl:grid-cols-10 gap-2">
+    <div className="grid grid-cols-4 grid-cols-[repeat(auto-fit,minmax(75px,1fr))] gap-2 max-w-6xl mx-auto">
       {characters.map(character => (
         <div
           key={character.name}
           className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getRarityColor(character.rarity)}`}
         >
-          <div className="w-[85px] h-[85px] flex items-center justify-center overflow-hidden flex-shrink-0">
+          <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
             <a
               href={`https://arknights.fandom.com/wiki/${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
               target="_blank"
@@ -78,7 +78,7 @@ export const CharacterGrid: React.FC<CharacterGridProps> = ({ characters }) => {
               <CharacterImage character={character} />
             </a>
           </div>
-          <div className="w-full bg-black bg-opacity-75 text-white text-xs font-medium text-center py-1">
+          <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight">
             {getCharacterName(character.icon.replace('.png', ''), language)}
           </div>
         </div>

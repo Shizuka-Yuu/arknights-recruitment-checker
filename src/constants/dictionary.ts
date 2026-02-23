@@ -41,8 +41,8 @@ export const dictionary: Record<Language, Dictionary> = {
       clear: 'クリア',
       selectionStatus: {
         normal: (current, max) => `通常検索 (${current}/${max}) - あと${max - current}タグで確定解析モード`,
-        guaranteed: '確定解析モード - 5タグ選択で確定組み合わせを表示',
-        maxReached: '✅ 5タグ選択！確定解析モードになりました'
+        guaranteed: '確定解析モード - 確定組み合わせを表示中',
+        maxReached: '✅ 5タグ選択完了！'
       },
       results: {
         allCharacters: (count) => `全キャラクター (${count}件)`,
@@ -256,8 +256,8 @@ export const dictionary: Record<Language, Dictionary> = {
       clear: 'Clear',
       selectionStatus: {
         normal: (current, max) => `Normal Search (${current}/${max}) - ${max - current} more tags for Guaranteed Analysis`,
-        guaranteed: 'Guaranteed Analysis Mode - 5 tags selected for guaranteed combinations',
-        maxReached: '✅ 5 tags selected! Guaranteed Analysis Mode activated'
+        guaranteed: 'Guaranteed Analysis Mode - Displaying guaranteed combinations',
+        maxReached: '✅ 5 tags selected!'
       },
       results: {
         allCharacters: (count) => `All Characters (${count})`,
@@ -462,53 +462,6 @@ export const dictionary: Record<Language, Dictionary> = {
       'icon_waaifu': { ja: 'ワイフー', en: "Waai Fu" }
     }
   }
-}
-
-export const getRobotTimeInfo = (charId: string, language: Language): string | undefined => {
-  const robotTimeInfo: Record<string, { ja: string, en: string }> = {
-    'confess-47_icon': { 
-      ja: 'ロボット狙い: 3時間50分 / 星4以上狙い: 9時間', 
-      en: 'Robot target: 3h50m / ★4+ target: 9h' 
-    },
-    'icon_castle-3': { 
-      ja: 'ロボット狙い: 3時間50分 / 星4以上狙い: 9時間', 
-      en: 'Robot target: 3h50m / ★4+ target: 9h' 
-    },
-    'friston-3_icon': { 
-      ja: 'ロボット狙い: 3時間50分 / 星4以上狙い: 9時間', 
-      en: 'Robot target: 3h50m / ★4+ target: 9h' 
-    },
-    'justiceknight_icon': { 
-      ja: 'ロボット狙い: 3時間50分 / 星4以上狙い: 9時間', 
-      en: 'Robot target: 3h50m / ★4+ target: 9h' 
-    },
-    'icon_lancet-2': { 
-      ja: 'ロボット狙い: 3時間50分 / 星4以上狙い: 9時間', 
-      en: 'Robot target: 3h50m / ★4+ target: 9h' 
-    },
-    'phonor-0_icon': { 
-      ja: 'ロボット狙い: 3時間50分 / 星4以上狙い: 9時間', 
-      en: 'Robot target: 3h50m / ★4+ target: 9h' 
-    },
-    'icon_thermal-ex': { 
-      ja: 'ロボット狙い: 3時間50分 / 星4以上狙い: 9時間', 
-      en: 'Robot target: 3h50m / ★4+ target: 9h' 
-    }
-  }
-  return robotTimeInfo[charId]?.[language]
-}
-
-export const getRobotTime = (charId: string): string | undefined => {
-  const robotTimes: Record<string, string> = {
-    'confess-47_icon': '9h',
-    'icon_castle-3': '6h',
-    'friston-3_icon': '9h',
-    'justiceknight_icon': '9h',
-    'icon_lancet-2': '6h',
-    'phonor-0_icon': '9h',
-    'icon_thermal-ex': '6h'
-  }
-  return robotTimes[charId]
 }
 
 // ヘルパー関数

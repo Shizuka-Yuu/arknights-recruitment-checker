@@ -117,10 +117,10 @@ export const Header: React.FC = () => {
         
         {/* テキストレイヤー */}
         <div className="relative z-10">
-          <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
             {ui.title}
           </h1>
-          <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-sm sm:text-lg" style={{ color: 'var(--text-secondary)' }}>
             {ui.subtitle}
           </p>
         </div>

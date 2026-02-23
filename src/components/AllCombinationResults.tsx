@@ -294,18 +294,21 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                           {language === 'ja' ? '9時間設定が必須条件' : '9-hour setting is required'}
                         </span>
                         <span style={{ display: 'block', color: '#dc2626' }}>
-                          {language === 'ja' ? '上級エリート以外の併用タグが消失し（星6内でのランダム抽選になる）可能性あり' : 'Other tags may disappear (random selection within ★6 only)'}
+                          {language === 'ja' ? '上級エリート以外の併用タグ消失リスク（星6内でのランダム抽選になる）あり' : 'Other tags may disappear (random selection within ★6 only)'}
                         </span>
                       </span>
                     )}
                     {!result.combo.includes('上級エリート') && result.combo.includes('エリート') && (
-                      <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
-                        <span style={{ display: 'block' }}>
-                          {language === 'ja' ? '9時間設定が必須条件（エリートタグ消失リスクあり）' : '9-hour setting required (elite tag loss risk)'}
+                      <span style={{ color: '#dc2626', display: 'block', width: '100%' }}>
+                        <span className="font-medium" style={{ display: 'block' }}>
+                          {language === 'ja' ? '9時間設定が必須条件' : '9-hour setting is required'}
+                        </span>
+                        <span style={{ display: 'block', color: '#dc2626' }}>
+                          {language === 'ja' ? 'エリート以外の併用タグ消失リスク（星5内でのランダム抽選になる）あり' : 'Other tags may disappear (random selection within ★5 only)'}
                         </span>
                       </span>
                     )}
-                    {!result.combo.includes('上級エリート') && !result.combo.includes('エリート') && !result.characters.some(char => char.tags.includes('ロボット')) && (
+                    {result.isGuaranteed && !result.combo.includes('上級エリート') && !result.combo.includes('エリート') && !result.characters.some(char => char.tags.includes('ロボット')) && (
                       <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
                         <span style={{ display: 'block' }}>
                           {language === 'ja' ? '9時間設定推奨（レアタグ消失リスクあり）' : '9-hour setting recommended (rare tag loss risk)'}
@@ -406,18 +409,21 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                           {language === 'ja' ? '9時間設定が必須条件' : '9-hour setting is required'}
                         </span>
                         <span style={{ display: 'block', color: '#dc2626' }}>
-                          {language === 'ja' ? '上級エリート以外の併用タグが消失し（星6内でのランダム抽選になる）可能性あり' : 'Other tags may disappear (random selection within ★6 only)'}
+                          {language === 'ja' ? '上級エリート以外の併用タグ消失リスク（星6内でのランダム抽選になる）あり' : 'Other tags may disappear (random selection within ★6 only)'}
                         </span>
                       </span>
                     )}
                     {!result.combo.includes('上級エリート') && result.combo.includes('エリート') && (
-                      <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
-                        <span style={{ display: 'block' }}>
-                          {language === 'ja' ? '9時間設定が必須条件（エリートタグ消失リスクあり）' : '9-hour setting required (elite tag loss risk)'}
+                      <span style={{ color: '#dc2626', display: 'block', width: '100%' }}>
+                        <span className="font-medium" style={{ display: 'block' }}>
+                          {language === 'ja' ? '9時間設定が必須条件' : '9-hour setting is required'}
+                        </span>
+                        <span style={{ display: 'block', color: '#dc2626' }}>
+                          {language === 'ja' ? 'エリート以外の併用タグ消失リスク（星5内でのランダム抽選になる）あり' : 'Other tags may disappear (random selection within ★5 only)'}
                         </span>
                       </span>
                     )}
-                    {!result.combo.includes('上級エリート') && !result.combo.includes('エリート') && !filteredCharacters.some(char => char.tags.includes('ロボット')) && (
+                    {result.isGuaranteed && !result.combo.includes('上級エリート') && !result.combo.includes('エリート') && !filteredCharacters.some(char => char.tags.includes('ロボット')) && (
                       <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
                         <span style={{ display: 'block' }}>
                           {language === 'ja' ? '9時間設定推奨（レアタグ消失リスクあり）' : '9-hour setting recommended (rare tag loss risk)'}

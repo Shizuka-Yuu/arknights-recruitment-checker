@@ -219,7 +219,7 @@ export const GuaranteedResults: React.FC<GuaranteedResultsProps> = ({ combos, ch
                         >
                           <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden">
                             <a 
-                              href={`https://arknights.wikiru.jp/?${encodeURIComponent(getCharacterName(character.icon.replace('.png', ''), 'ja'))}`}
+                              href={`https://arknights.wikiru.jp/?${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="block w-full h-full flex items-center justify-center"

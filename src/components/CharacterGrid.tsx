@@ -62,7 +62,7 @@ export const CharacterGrid: React.FC<CharacterGridProps> = ({ characters }) => {
         >
           <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
             <a
-              href={`https://arknights.fandom.com/wiki/${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
+              href={`https://arknights.wikiru.jp/?${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full h-full flex items-center justify-center cursor-pointer"

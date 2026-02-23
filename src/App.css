@@ -7,6 +7,62 @@
   --text-secondary: #374151;
   --text-tertiary: #6b7280;
   --border-color: #e5e7eb;
+
+  /* テーマ切り替えトランジションを無効化 */
+  transition: none;
+}
+
+/* キャレットを非表示 */
+* {
+  caret-color: transparent !important;
+}
+
+/* テーマ切り替えトランジションを適用（一瞬切り替え） */
+.theme-transition {
+  transition: none;
+}
+
+/* オーバーレイメッセージはトランジションを無効化 */
+.overlay-message {
+  transition: none !important;
+}
+
+/* 入力フィールドのみキャレットを表示 */
+input,
+textarea,
+[contenteditable="true"] {
+  caret-color: auto !important;
+}
+
+/* オーバーレイアニメーション */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fade-out-up {
+  from {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+}
+
+.animate-fade-in-up {
+  animation:
+    fade-in-up 0.3s ease-out,
+    fade-out-up 0.3s ease-in 1.7s forwards;
+  /* 初期位置を明示的に指定 */
+  transform: translate(-50%, 0);
 }
 
 [data-theme="dark"] {
@@ -23,9 +79,7 @@ html,
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
+  transition: none;
 }
 
 /* Tailwindクラスのオーバーライド - より強力なセレクタ */

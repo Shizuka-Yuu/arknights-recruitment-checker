@@ -20,7 +20,7 @@ const preprocessCharacterTags = (character: Character): string[] => {
   return tags
 }
 
-// 通常検索と同じロジックを使用するヘルパー関数
+// キャラクターをタグでフィルタリングするヘルパー関数
 const filterCharactersByTags = (
   characters: Character[], 
   selectedTags: string[]
@@ -96,18 +96,11 @@ export const useRecruitmentCalculator = (
 
     console.log('検索開始 - 選択タグ:', selectedTags)
     
-    // 上級エリートタグが選択されていない場合、星6キャラを除外
-    const eligibleCharacters = selectedTags.includes('上級エリート') 
-      ? characters 
-      : characters.filter(char => char.rarity !== '6')
-    
-    console.log('検索対象キャラクター数:', eligibleCharacters.length)
-
-    // 1タグ選択時は単純な検索、2〜5タグ時は組み合わせ検索
+    // 1タグ選択時は単純な検索
     if (selectedTags.length === 1) {
       console.log('1タグ検索:', selectedTags[0])
       
-      // 上級エリートタグが選択されていない場合、星6キャラを除外
+      // 上級エリートタグが選択されている場合のみ星6キャラを許可
       const eligibleCharacters = selectedTags.includes('上級エリート') 
         ? characters 
         : characters.filter(char => char.rarity !== '6')
@@ -115,14 +108,13 @@ export const useRecruitmentCalculator = (
       const filteredCharacters = filterCharactersByTags(eligibleCharacters, selectedTags)
       
       console.log('1タグ検索結果:', filteredCharacters.map(c => `${c.name} (${c.rarity}★)`))
-
-      // レアリティ降順でソート
+      
       const sortedCharacters = filteredCharacters.sort((a, b) => {
         const rarityOrder = { '6': 3, '5': 2, '4': 1, '3': 0 }
         return (rarityOrder[b.rarity as keyof typeof rarityOrder] || 0) - 
                (rarityOrder[a.rarity as keyof typeof rarityOrder] || 0)
       })
-
+      
       return { 
         characters: sortedCharacters,
         guaranteedCombos: [],
@@ -131,27 +123,37 @@ export const useRecruitmentCalculator = (
       }
     }
 
-    // 2〜5タグ選択時は組み合わせ検索
-    let allCombos: ComboResult[] = []
-    let guaranteedCombos: ComboResult[] = []
+    // 2~5タグ選択時は全組み合わせ検索（25通り）
+    const allCombos: ComboResult[] = []
+    const guaranteedCombos: ComboResult[] = []
     
-    if (selectedTags.length >= 2 && selectedTags.length <= 5) {
+    if (selectedTags.length >= 2) {
+      // 1~3タグの全組み合わせを生成（最大25通り）
+      const maxComboSize = Math.min(selectedTags.length, 3)
       
-      // 選択されたタグ数だけではなく、1タグから現在のタグ数までの全組み合わせを生成
-      for (let size = 1; size <= selectedTags.length; size++) {
+      for (let size = 1; size <= maxComboSize; size++) {
         const combos = getCombinations(selectedTags, size)
         
         for (const combo of combos) {
+          // 上級エリートを含む組み合わせは星6を含む、それ以外は星6を除外
+          const eligibleCharacters = combo.includes('上級エリート') 
+            ? characters 
+            : characters.filter(char => char.rarity !== '6')
+          
           const matchingCharacters = filterCharactersByTags(eligibleCharacters, combo)
+          
+          console.log(`組み合わせ [${combo.join(', ')}] の検索結果: ${matchingCharacters.length}件`)
+          if (matchingCharacters.length > 0) {
+            console.log(`  該当キャラ: ${matchingCharacters.map(c => `${c.name} (${c.rarity}★)`).join(', ')}`)
+          }
           
           // 該当キャラクターがいる場合のみ追加
           if (matchingCharacters.length > 0) {
-            // 星4以上確定またはロボット確定の条件をチェック
-            const isGuaranteed = matchingCharacters.every(char => {
-              const isHighRarity = parseInt(char.rarity) >= 4
-              const isRobot = char.tags.includes('ロボット')
-              return isHighRarity || isRobot
-            })
+            // 最低レアリティを特定して確定判定
+            const lowestRarity = Math.min(...matchingCharacters.map(char => parseInt(char.rarity)))
+            const isGuaranteed = lowestRarity >= 4
+            
+            console.log(`  最低レアリティ: ${lowestRarity}★, 確定判定: ${isGuaranteed}`)
             
             const comboResult: ComboResult = {
               combo,
@@ -176,18 +178,36 @@ export const useRecruitmentCalculator = (
     console.log('全組み合わせ結果:', allCombos.length)
     console.log('確定組み合わせ結果:', guaranteedCombos.length)
 
-    // 確定結果もキャラクター数昇順でソート
-    guaranteedCombos.sort((a: ComboResult, b: ComboResult) => a.characters.length - b.characters.length)
+    // 確定結果を優先度順にソート
+    guaranteedCombos.sort((a: ComboResult, b: ComboResult) => {
+      // 上級エリートを含む組み合わせを最上位に
+      const aHasSeniorElite = a.combo.includes('上級エリート')
+      const bHasSeniorElite = b.combo.includes('上級エリート')
+      
+      if (aHasSeniorElite && !bHasSeniorElite) return -1
+      if (!aHasSeniorElite && bHasSeniorElite) return 1
+      
+      // エリートを含む組み合わせを次に
+      const aHasElite = a.combo.includes('エリート')
+      const bHasElite = b.combo.includes('エリート')
+      
+      if (aHasElite && !bHasElite) return -1
+      if (!aHasElite && bHasElite) return 1
+      
+      // それ以外はキャラクター数昇順
+      return a.characters.length - b.characters.length
+    })
 
     // 確定結果の組み合わせをセットで管理
     const guaranteedComboSets = new Set(
       guaranteedCombos.map((result: ComboResult) => JSON.stringify(result.combo.sort()))
     )
 
-    // 通常検索結果から確定結果を除外
+    // 通常検索結果から確定結果を除外（ただし重複のみ除外）
     const filteredCombos = allCombos.filter((result: ComboResult) => {
       const comboKey = JSON.stringify(result.combo.sort())
-      return !result.isGuaranteed && !guaranteedComboSets.has(comboKey)
+      // 確定結果と重複する場合のみ除外
+      return !guaranteedComboSets.has(comboKey)
     })
 
     // 全ての組み合わせをキャラクター数昇順でソート（純粋なキャラ数昇順）
@@ -196,67 +216,10 @@ export const useRecruitmentCalculator = (
     return { 
       characters: [], // 直接的なキャラクター表示は使わない
       guaranteedCombos: guaranteedCombos.map((r: ComboResult) => r.combo),
-      allCombos: filteredCombos, // グループ化せず、ソート済みのフラットな配列を返す
+      allCombos: filteredCombos, // 確定結果を除外した候補のみを返す
       guaranteedResults: guaranteedCombos
     }
   }, [characters, selectedTags])
 
-  // 5タグ選択時の星3を含む星4~5候補を計算（従来通り維持）
-  const candidateCombos = useMemo(() => {
-    if (selectedTags.length === 5) {
-      const allCombos: string[][] = []
-      
-      // 2〜5タグの全組み合わせを生成
-      for (let size = 2; size <= 5; size++) {
-        const combos = getCombinations(selectedTags, size)
-        allCombos.push(...combos)
-      }
-
-      // 星3〜星5の候補の組み合わせをフィルタリング（星6は除外）
-      const candidateCombos = allCombos.filter(combo => {
-        const matchingCharacters = filterCharactersByTags(characters, combo)
-        
-        // 星3〜星5のキャラクターがいるかチェック（星6は除外）
-        const hasCandidates = matchingCharacters.some(char => 
-          parseInt(char.rarity) >= 3 && parseInt(char.rarity) <= 5 && char.rarity !== '1'
-        )
-        
-        return hasCandidates
-      })
-
-      // ★4以上確定の組み合わせを除外
-      const guaranteed = searchResult.guaranteedCombos || []
-      const filteredCandidateCombos = candidateCombos.filter(combo =>
-        !guaranteed.some(guaranteed => 
-          guaranteed.length === combo.length &&
-          guaranteed.every(tag => combo.includes(tag))
-        )
-      )
-
-      // 重複除去：より少ないタグ数の組み合わせに包含される場合は除外
-      const uniqueCandidateCombos = filteredCandidateCombos.filter((combo, index, self) => {
-        const smallerCombos = self.filter((c, i) => 
-          i < index && c.length < combo.length
-        )
-        
-        const isRedundant = smallerCombos.some(smallerCombo =>
-          smallerCombo.every(tag => combo.includes(tag))
-        )
-        
-        return !isRedundant
-      })
-
-      return uniqueCandidateCombos
-    }
-
-    return []
-  }, [characters, selectedTags, searchResult.guaranteedCombos])
-
-  // 候補情報を含めた検索結果を返す
-  const enhancedSearchResult = useMemo(() => ({
-    ...searchResult,
-    candidateCombos
-  }), [searchResult, candidateCombos])
-
-  return enhancedSearchResult
+  return searchResult
 }

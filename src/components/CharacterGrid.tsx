@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useApp } from '../contexts/AppContext'
+import { useApp } from '../hooks/useApp'
 import { getCharacterName } from '../constants/dictionary'
 import type { Character } from '../types'
 

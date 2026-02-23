@@ -1,5 +1,5 @@
 import React from 'react'
-import { useApp } from '../contexts/AppContext'
+import { useApp } from '../hooks/useApp'
 import { getUIText, getTagName } from '../constants/dictionary'
 
 interface TagSelectorProps {
@@ -8,6 +8,8 @@ interface TagSelectorProps {
   onClearAll: () => void
   guaranteedCount?: number
   totalCombosCount?: number
+  hideLowRarity?: boolean
+  onHideLowRarityChange?: (hide: boolean) => void
 }
 
 const TAG_CATEGORIES = {
@@ -25,7 +27,9 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
   onTagToggle,
   onClearAll,
   guaranteedCount = 0,
-  totalCombosCount = 0
+  totalCombosCount = 0,
+  hideLowRarity = false,
+  onHideLowRarityChange
 }) => {
   const { language, theme } = useApp()
   const ui = getUIText(language)
@@ -109,7 +113,40 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
   return (
     <div className="space-y-4 p-4 rounded-lg shadow relative" style={{ backgroundColor: 'var(--bg-secondary)', color: 'var(--text-primary)', zIndex: 1 }}>
       <div className="flex justify-between items-center relative" style={{ zIndex: 2 }}>
-        <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>{ui.tagSelection}</h2>
+        <div className="flex items-center space-x-3">
+          <h2 className="text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>{ui.tagSelection}</h2>
+          {/* ★1~2非表示トグル */}
+          <div className="flex items-center gap-2">
+            <label className="text-xs" style={{ color: 'var(--text-secondary)' }}>
+              {language === 'ja' ? '★1~2を検索結果に非表示' : 'Hide ★1~2 from results'}
+            </label>
+            <button
+              onClick={() => onHideLowRarityChange?.(!hideLowRarity)}
+              className="relative inline-flex h-5 w-9 items-center rounded-full transition-colors cursor-pointer"
+              style={{
+                backgroundColor: hideLowRarity 
+                  ? '#0196d9'  // リセットボタンと同じカラー
+                  : (theme === 'dark' ? '#4b5563' : '#d1d5db')
+              }}
+              title={language === 'ja' 
+                ? (hideLowRarity 
+                  ? '★1~2キャラクターを検索結果に表示する' 
+                  : '★1~2キャラクターを検索結果から非表示にする')
+                : (hideLowRarity
+                  ? 'Show ★1~2 characters in search results'
+                  : 'Hide ★1~2 characters from search results')
+              }
+            >
+              <span
+                className="inline-block h-4 w-4 transform rounded-full transition-colors"
+                style={{
+                  transform: hideLowRarity ? 'translateX(20px)' : 'translateX(2px)',
+                  backgroundColor: '#ffffff'  // ダークテーマ時も白に固定
+                }}
+              />
+            </button>
+          </div>
+        </div>
         <div className="flex items-center space-x-2">
           <button
             onClick={onClearAll}
@@ -183,15 +220,16 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
         {/* スマホでは縦並び、PCでは横並び */}
         <div className="space-y-3">
           {/* タイプ */}
-          <div className="flex items-start gap-3">
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 min-w-[40px] pt-2">{ui.tagCategories.type}</h3>
-            <div className="flex flex-wrap gap-2">
-              {TAG_CATEGORIES.type.map(tag => (
+          <div className="flex items-center gap-3">
+            <h3 className={`text-sm font-medium text-gray-600 dark:text-gray-400 ${language === 'en' ? 'min-w-[70px]' : 'min-w-[45px]'} text-left h-8 flex items-center`}>{ui.tagCategories.type}</h3>
+            <div className="flex flex-wrap gap-2 text-left flex-1 items-start min-h-[40px]">
+              {TAG_CATEGORIES.type.map((tag) => (
                 <button
+                  key={`type-${tag}`}
                   title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-sm border transition-colors ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  className={`px-3 py-2 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -200,15 +238,16 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           </div>
 
           {/* 位置 */}
-          <div className="flex items-start gap-3">
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 min-w-[40px] pt-2">{ui.tagCategories.position}</h3>
-            <div className="flex flex-wrap gap-2">
-              {TAG_CATEGORIES.position.map(tag => (
+          <div className="flex items-center gap-3">
+            <h3 className={`text-sm font-medium text-gray-600 dark:text-gray-400 ${language === 'en' ? 'min-w-[70px]' : 'min-w-[45px]'} text-left h-8 flex items-center`}>{ui.tagCategories.position}</h3>
+            <div className="flex flex-wrap gap-2 text-left flex-1 items-start min-h-[40px]">
+              {TAG_CATEGORIES.position.map((tag) => (
                 <button
+                  key={`position-${tag}`}
                   title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-sm border transition-colors ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  className={`px-3 py-2 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -217,15 +256,16 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           </div>
 
           {/* タグ */}
-          <div className="flex items-start gap-3">
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 min-w-[40px] pt-2">{ui.tagCategories.tags}</h3>
-            <div className="flex flex-wrap gap-2">
-              {TAG_CATEGORIES.tags.map(tag => (
+          <div className="flex items-center gap-3">
+            <h3 className={`text-sm font-medium text-gray-600 dark:text-gray-400 ${language === 'en' ? 'min-w-[70px]' : 'min-w-[45px]'} text-left h-8 flex items-center`}>{ui.tagCategories.tags}</h3>
+            <div className="flex flex-wrap gap-2 text-left flex-1 items-start min-h-[40px]">
+              {TAG_CATEGORIES.tags.map((tag) => (
                 <button
+                  key={`tags-${tag}`}
                   title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-sm border transition-colors ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  className={`px-3 py-2 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -234,15 +274,16 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           </div>
 
           {/* 確定 */}
-          <div className="flex items-start gap-3">
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 min-w-[40px] pt-2">{ui.tagCategories.confirmed}</h3>
-            <div className="flex flex-wrap gap-2">
-              {TAG_CATEGORIES.confirmed.map(tag => (
+          <div className="flex items-center gap-3">
+            <h3 className={`text-sm font-medium text-gray-600 dark:text-gray-400 ${language === 'en' ? 'min-w-[70px]' : 'min-w-[45px]'} text-left h-8 flex items-center`}>{ui.tagCategories.confirmed}</h3>
+            <div className="flex flex-wrap gap-2 text-left flex-1 items-start min-h-[40px]">
+              {TAG_CATEGORIES.confirmed.map((tag) => (
                 <button
+                  key={`confirmed-${tag}`}
                   title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-sm border transition-colors ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  className={`px-3 py-2 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
                 >
                   {getTagName(tag, language)}
                 </button>

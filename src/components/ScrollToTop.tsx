@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useApp } from '../contexts/AppContext'
+import { useApp } from '../hooks/useApp'
 
 export const ScrollToTop: React.FC = () => {
   const { language } = useApp()

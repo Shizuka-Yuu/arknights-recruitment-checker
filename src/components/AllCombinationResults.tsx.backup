@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useApp } from '../hooks/useApp'
+import { useApp } from '../contexts/AppContext'
 import { getCharacterName, getTagName } from '../constants/dictionary'
 import type { ComboResult, Character } from '../types/index'
 
@@ -14,14 +14,12 @@ const tryImagePaths = (iconName: string): string[] => {
   const cleanName = iconName.replace(/^img_/, '').replace(/^icon_/, '').replace(/\.png$/, '')
   
   const paths = [
-    `${basePath}images/${iconName}`, // ファイル名そのまま
-    `${basePath}images/${cleanName}.png`, // プレフィックスなし
-    `${basePath}images/${cleanName}_icon.png`, // _iconサフィックス
-    `${basePath}images/img_${cleanName}.png`, // img_プレフィックス
-    `${basePath}images/icon_${cleanName}.png`, // icon_プレフィックス
+    `${basePath}images/${iconName}`, // 蜈�E・繝輔ぃ繧�E�繝ｫ蜷搾�E�医・繝ｬ繝輔ぅ繝�Eけ繧�E�縺めE���E・    `${basePath}images/${cleanName}.png`, // 繝励Ξ繝輔ぅ繝�Eけ繧�E�縺�E�縺・    `${basePath}images/${cleanName}_icon.png`, // _icon繧�E�繝輔ぅ繝�Eけ繧�E�莉倥″
+    `${basePath}images/img_${cleanName}.png`, // img_繝励Ξ繝輔ぅ繝�Eけ繧�E�莉倥″
+    `${basePath}images/icon_${cleanName}.png`, // icon_繝励Ξ繝輔ぅ繝�Eけ繧�E�莉倥″
   ]
   
-  // 重複を除去
+  // 驥崎､・�E�髯�E�蜴�E�
   return [...new Set(paths)]
 }
 
@@ -51,7 +49,7 @@ const CharacterImage: React.FC<{ character: Character; size?: number }> = ({ cha
     )
   }
   
-  const imgSize = size - 10 // 余白を確保して表示
+  const imgSize = size - 10 // 蟁E���E�蟁E��！E��剰�E��E�遉ｺ
   
   return (
     <div 
@@ -64,7 +62,7 @@ const CharacterImage: React.FC<{ character: Character; size?: number }> = ({ cha
         className="object-contain"
         style={{ maxWidth: `${imgSize}px`, maxHeight: `${imgSize}px` }}
         onError={handleError}
-        key={currentPath} // パス変更時に画像を再読み込みさせるため
+        key={currentPath} // パス変更時に画像を再読み込みさせるためE
       />
     </div>
   )
@@ -98,8 +96,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
   }
 
   const getComboColor = (characters: Character[]) => {
-    // 最も低レアリティのキャラクターを特定
-    const lowestRarity = characters.reduce((min, char) => {
+    // 蛟呵�E�懊く繝｣繝ｩ縺�E�譛繧めE��弱�E�繝ｬ繧�E�繝ｪ繝�EぁE��貞叙蠕�E    const lowestRarity = characters.reduce((min, char) => {
       const rarity = parseInt(char.rarity)
       return rarity < min ? rarity : min
     }, 6)
@@ -123,8 +120,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
   }
 
   const getTagColor = (characters: Character[]) => {
-    // 最も低レアリティのキャラクターを特定
-    const lowestRarity = characters.reduce((min, char) => {
+    // 蛟呵�E�懊く繝｣繝ｩ縺�E�譛繧めE��弱�E�繝ｬ繧�E�繝ｪ繝�EぁE��貞叙蠕�E    const lowestRarity = characters.reduce((min, char) => {
       const rarity = parseInt(char.rarity)
       return rarity < min ? rarity : min
     }, 6)
@@ -150,29 +146,29 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
   if ((!allCombos || allCombos.length === 0) && (!guaranteedResults || guaranteedResults.length === 0)) {
     return (
       <div className="text-center py-8 text-gray-500 dark:text-gray-400">
-        {language === 'ja' ? '該当する組み合わせが見つかりません' : 'No combinations found'}
+        {language === 'ja' ? '隧�E�蠖薙☁E��狗ｵ・∩蜷医�E�縺帙′縺めE��縺�E�縺帙ａE : 'No combinations found'}
       </div>
     )
   }
 
   return (
     <div className="space-y-6">
-      {/* 確定結果を優先的に表示 */}
+      {/* 遒ｺ螳夂ｵ先棡縺後≠繧後�E荳企Κ縺�E�陦�E�遉ｺ */}
       {guaranteedResults && guaranteedResults.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center gap-2 p-4 rounded-lg" style={{ backgroundColor: 'var(--bg-tertiary)', border: '1px solid var(--border-color)' }}>
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <h3 className="text-lg font-semibold" style={{ color: '#16a34a' }}>
-              {language === 'ja' ? '確定結果' : 'Guaranteed Results'} ({guaranteedResults.length}件)
+              {language === 'ja' ? '遒ｺ螳夂ｵ先棡' : 'Guaranteed Results'} ({guaranteedResults.length}莉ｶ)
             </h3>
             <span className="text-sm" style={{ color: '#15803d' }}>
-              {language === 'ja' ? '★3+確定またはロボ確定' : '★3+ guaranteed or robot guaranteed'}
+              {language === 'ja' ? '☁E+確定また�Eロボ確宁E : '☁E+ guaranteed or robot guaranteed'}
             </span>
           </div>
           
           <div className="grid gap-3">
             {guaranteedResults.map((result, index) => {
-              // ★3以下を非表示設定の場合はフィルタリングして表示
+              // 笘�E~2髱櫁E���E�遉ｺ蠕後�E繧�E�繝｣繝ｩ繧�E�繧�E�繝ｼ縺・莉ｶ縺�E�縺�E�繧句�E��E�蜷医・髱櫁E���E�遉ｺ
               const filteredCharacters = result.characters
                 .filter(character => !hideLowRarity || parseInt(character.rarity) >= 3)
               
@@ -219,28 +215,28 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                 
                 <div className="flex items-start relative">
                   <div className="text-xs text-left" style={{ color: 'var(--text-primary)', textAlign: 'left', display: 'block', width: '100%' }}>
-                    {result.combo.length}{language === 'ja' ? 'タグで確定' : ' tags guaranteed'} ({result.characters.length} {language === 'ja' ? 'キャラ' : 'characters'})
-                    {result.combo.includes('高級エリート') && (
+                    {result.combo.length}{language === 'ja' ? '繧�E�繧�E�縺�E�遒ｺ螳・ : ' tags guaranteed'} ({result.characters.length} {language === 'ja' ? '繧�E�繝｣繝ｩ' : 'characters'})
+                    {result.combo.includes('荳顔ｴ壹お繝ｪ繝ｼ繝�E) && (
                       <span style={{ color: '#dc2626', display: 'block', width: '100%' }}>
                         <span className="font-medium" style={{ display: 'block' }}>
-                          {language === 'ja' ? '9時間設定が必須です' : '9-hour setting is required'}
+                          {language === 'ja' ? '9譎る俣險�E�螳壹′蠢・�E�域擅莉ｶ縺�E�縺・ : '9-hour setting is required'}
                         </span>
                       </span>
                     )}
-                    {!result.combo.includes('高級エリート') && result.characters.some(char => char.tags.includes('ロボット')) && (
+                    {!result.combo.includes('荳顔ｴ壹お繝ｪ繝ｼ繝�E) && result.characters.some(char => char.tags.includes('繝ｭ繝懊ャ繝�E)) && (
                       <div className="flex flex-col items-start" style={{ display: 'block', width: '100%' }}>
                         <div className="flex items-center text-xs" style={{ color: 'var(--text-secondary)', display: 'block' }}>
-                          <span>{language === 'ja' ? 'ロボット狙い: 3時間50分以下に設定' : 'Robot target: set to 3h50m'}</span>
+                          <span>{language === 'ja' ? '繝ｭ繝懊ャ繝育漁縺・ 3譎る俣50蛻・↓險�E�螳壹�E�縺�E�縺上□縺輔！E : 'Robot target: set to 3h50m'}</span>
                         </div>
                         <div className="text-xs mt-1" style={{ color: '#f59e0b' }}>
-                          {language === 'ja' ? '▼短時間はタグ消失リスク' : '▼Short time has tag loss risk'}
+                          {language === 'ja' ? '窶�E�遏ｭ譎る俣險�E�螳壹・繧�E�繧�E�豸亥�E��E�繝ｪ繧�E�繧�E�' : '窶�E�Short time has tag loss risk'}
                         </div>
                       </div>
                     )}
-                    {!result.combo.includes('高級エリート') && !result.characters.some(char => char.tags.includes('ロボット')) && (
+                    {!result.combo.includes('荳顔ｴ壹お繝ｪ繝ｼ繝�E) && !result.characters.some(char => char.tags.includes('繝ｭ繝懊ャ繝�E)) && (
                       <span style={{ color: '#f59e0b', display: 'block', width: '100%' }}>
                         <span style={{ display: 'block' }}>
-                          {language === 'ja' ? '9時間設定推奨（レアタグ消失リスク）' : '9-hour setting recommended (rare tag loss risk)'}
+                          {language === 'ja' ? '9譎る俣險�E�螳壽耳螂ｨ・育�E�縺�E�繧�E�繧�E�豸亥�E��E�繝ｪ繧�E�繧�E�・・ : '9-hour setting recommended (rare tag loss risk)'}
                         </span>
                       </span>
                     )}
@@ -248,7 +244,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                   <div className="flex items-center gap-1" style={{ minWidth: '80px', justifyContent: 'flex-end' }}>
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#16a34a' }}></div>
                     <span className="text-xs" style={{ color: '#16a34a' }}>
-                      {language === 'ja' ? '確定' : 'Guaranteed'}
+                      {language === 'ja' ? '遒ｺ螳・ : 'Guaranteed'}
                     </span>
                   </div>
                 </div>
@@ -259,20 +255,20 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
         </div>
       )}
 
-      {/* その他の全ての組み合わせ結果 - キャラクター数でソートして表示 */}
+      {/* 騾壼�E��E�縺�E�邨・∩蜷医�E�縺帷�E�先棡 - 繧�E�繝｣繝ｩ繧�E�繧�E�繝ｼ謨�E�譏�E�E�・〒陦�E�遉ｺ */}
       <div className="space-y-4">
         <div className="flex items-center gap-2">
           <h4 className="text-md font-medium" style={{ color: 'var(--text-primary)' }}>
-            {language === 'ja' ? '全ての組み合わせ' : 'All Combinations'}
+            {language === 'ja' ? '蜈ｨ邨・∩蜷医�E�縺・ : 'All Combinations'}
           </h4>
           <span className="px-2 py-1 text-xs rounded" style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-secondary)' }}>
-            {allCombos.length} {language === 'ja' ? '組み合わせ' : 'combinations'}
+            {allCombos.length} {language === 'ja' ? '蛟九�E邨・∩蜷医�E�縺・ : 'combinations'}
           </span>
         </div>
         <div className="grid gap-2">
-          {/* 表示する組み合わせを最初の5件に制限、それ以上は全て表示 */}
+          {/* 陦�E�遉ｺ縺吶�E�邨・∩蜷医�E�縺幢�E�域怙蛻昴・5蛟九√∪縺溘�E蜈ｨ縺�E�・・*/}
           {(showAllCombos ? allCombos : allCombos.slice(0, 5)).map((result, index) => {
-            // ★3以下を非表示設定の場合はフィルタリングして表示
+            // 笘�E~2髱櫁E���E�遉ｺ蠕後�E繧�E�繝｣繝ｩ繧�E�繧�E�繝ｼ縺・莉ｶ縺�E�縺�E�繧句�E��E�蜷医・髱櫁E���E�遉ｺ
             const filteredCharacters = result.characters
               .filter(character => !hideLowRarity || parseInt(character.rarity) >= 3)
             
@@ -319,14 +315,14 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                 
                 <div className="flex items-start relative">
                   <div className="text-xs text-left" style={{ color: 'var(--text-primary)', textAlign: 'left', display: 'block', width: '100%' }}>
-                    {result.combo.length}{language === 'ja' ? 'タグ' : ' tags'} ({result.characters.length} {language === 'ja' ? 'キャラ' : 'characters'})
-                    {filteredCharacters.some(char => char.tags.includes('ロボット')) && (
+                    {result.combo.length}{language === 'ja' ? '繧�E�繧�E�' : ' tags'} ({result.characters.length} {language === 'ja' ? '繧�E�繝｣繝ｩ' : 'characters'})
+                    {filteredCharacters.some(char => char.tags.includes('繝ｭ繝懊ャ繝�E)) && (
                       <div className="flex flex-col items-start">
                         <div className="flex items-center text-xs" style={{ color: 'var(--text-secondary)' }}>
-                          <span>{language === 'ja' ? 'ロボット狙い: 3時間50分以下に設定' : 'Robot target: set to 3h50m'}</span>
+                          <span>{language === 'ja' ? '繝ｭ繝懊ャ繝育漁縺・ 3譎る俣50蛻・↓險�E�螳壹�E�縺�E�縺上□縺輔！E : 'Robot target: set to 3h50m'}</span>
                         </div>
                         <div className="text-xs mt-1" style={{ color: '#f59e0b' }}>
-                          {language === 'ja' ? '▼短時間はタグ消失リスク' : '▼Short time has tag loss risk'}
+                          {language === 'ja' ? '窶�E�遏ｭ譎る俣險�E�螳壹・繧�E�繧�E�豸亥�E��E�繝ｪ繧�E�繧�E�' : '窶�E�Short time has tag loss risk'}
                         </div>
                       </div>
                     )}
@@ -334,16 +330,17 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                   <div className="flex items-center gap-1 absolute right-0 top-0" style={{ minWidth: '80px' }}>
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#6366f1' }}></div>
                     <span className="text-xs" style={{ color: '#6366f1' }}>
-                      {language === 'ja' ? '候補' : 'Candidate'}
+                      {language === 'ja' ? '蛟呵�E�・ : 'Candidate'}
                     </span>
                   </div>
+                </div>
                 </div>
               </div>
             )
           })}
         </div>
 
-        {/* もっと見る/折りたたむボタン - 組み合わせ数が5件を超える場合に表示 */}
+        {/* 謚倥�E�縺溘◆縺�E�繝懊ち繝ｳ・・蛟倶�E��E�荳翫・蝣�E�蜷茨�E�・*/}
         {allCombos.length > 5 && (
           <button
             onClick={() => setShowAllCombos(!showAllCombos)}
@@ -355,8 +352,9 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
             }}
           >
             {showAllCombos 
-              ? (language === 'ja' ? `▲ 折りたたむ (${allCombos.length}件中5件表示)` : `▲ Show less (${allCombos.length} combinations, showing 5)`)
-              : (language === 'ja' ? `▼ もっと見る (${allCombos.length - 5}件残り)` : `▼ Show more (${allCombos.length - 5} remaining)`)}
+              ? (language === 'ja' ? `笁E�� 謚倥�E�縺溘◆繧 (${allCombos.length}蛟倶�E��E�5蛟玖�E��E�遉ｺ)` : `笁E�� Show less (${allCombos.length} combinations, showing 5)`)
+              : (language === 'ja' ? `笁E�� 繧めE��縺�E�隕九ａE(${allCombos.length - 5}蛟区�E�九ａE` : `笁E�� Show more (${allCombos.length - 5} remaining)`)
+            }
           </button>
         )}
       </div>

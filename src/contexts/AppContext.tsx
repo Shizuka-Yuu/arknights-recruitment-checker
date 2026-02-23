@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import type { Language } from '../constants/dictionary'
 
@@ -14,13 +14,7 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined)
 
-export const useApp = () => {
-  const context = useContext(AppContext)
-  if (!context) {
-    throw new Error('useApp must be used within an AppProvider')
-  }
-  return context
-}
+export { AppContext }
 
 interface AppProviderProps {
   children: ReactNode
@@ -35,15 +29,19 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
 
   // localStorageから設定を読み込み
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language
-    if (savedLanguage && ['ja', 'en'].includes(savedLanguage)) {
-      setLanguageState(savedLanguage)
-    }
+    const timer = setTimeout(() => {
+      const savedLanguage = localStorage.getItem('language') as Language
+      if (savedLanguage && ['ja', 'en'].includes(savedLanguage)) {
+        setLanguageState(savedLanguage)
+      }
 
-    const savedTheme = localStorage.getItem('theme') as Theme
-    if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
-      setThemeState(savedTheme)
-    }
+      const savedTheme = localStorage.getItem('theme') as Theme
+      if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
+        setThemeState(savedTheme)
+      }
+    }, 0)
+    
+    return () => clearTimeout(timer)
   }, [])
 
   // 言語設定の保存
@@ -52,26 +50,30 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     localStorage.setItem('language', newLanguage)
   }
 
-  // テーマ設定の保存と適用
+  // テーマ設定の保存と適用（パフォーマンス最適化）
   const setTheme = (newTheme: Theme) => {
+    if (theme === newTheme) return // 同じテーマなら処理をスキップ
+    
     setThemeState(newTheme)
-    localStorage.setItem('theme', newTheme)
+    
+    // localStorageへの書き込みを非同期にしてメインスレッドをブロックしない
+    setTimeout(() => {
+      localStorage.setItem('theme', newTheme)
+    }, 0)
   }
 
-  // HTML要素にテーマクラスを適用
+  // HTML要素にテーマクラスを適用（パフォーマンス最適化）
   useEffect(() => {
-    const root = document.documentElement
-    const body = document.body
-    
-    // クラスベースのテーマ設定
-    root.classList.remove('light', 'dark')
-    body.classList.remove('light', 'dark')
-    root.classList.add(theme)
-    body.classList.add(theme)
-    
-    // data-theme属性の設定
-    root.setAttribute('data-theme', theme)
-    body.setAttribute('data-theme', theme)
+    // requestAnimationFrameで次のフレームまで処理を遅延
+    requestAnimationFrame(() => {
+      const root = document.documentElement
+      
+      // 最小限のDOM操作に
+      root.className = root.className.replace(/\b(light|dark)\b/g, '') + ' ' + theme
+      root.setAttribute('data-theme', theme)
+      
+      // bodyへの設定は削除（冗長なため）
+    })
   }, [theme])
 
   const value: AppContextType = {

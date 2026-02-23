@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { AppProvider, useApp } from './contexts/AppContext'
+import { AppProvider } from './contexts/AppContext'
+import { useApp } from './hooks/useApp'
 import { useCharacters } from './hooks/useCharacters'
 import { useRecruitmentCalculator } from './hooks/useRecruitmentCalculator'
 import { getUIText } from './constants/dictionary'
@@ -12,6 +13,8 @@ import './App.css'
 
 function AppContent() {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [hideLowRarity, setHideLowRarity] = useState(false)
+  const [overlayMessage, setOverlayMessage] = useState<string | null>(null)
   const { language } = useApp()
   const ui = getUIText(language)
   const { characters, loading } = useCharacters()
@@ -29,6 +32,21 @@ function AppContent() {
     setSelectedTags([])
   }
 
+  const handleLowRarityToggle = (hide: boolean) => {
+    setHideLowRarity(hide)
+    // オーバーレイメッセージを表示
+    const message = language === 'ja' 
+      ? (hide ? '★1~2キャラクターが検索結果から非表示になりました' : '★1~2キャラクターが検索結果に表示されます')
+      : (hide ? '★1~2 characters are now hidden from search results' : '★1~2 characters are now shown in search results')
+    
+    setOverlayMessage(message)
+    
+    // 2秒後にオーバーレイを非表示
+    setTimeout(() => {
+      setOverlayMessage(null)
+    }, 2000)
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex items-center justify-center">
@@ -41,8 +59,8 @@ function AppContent() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-      <div className="container mx-auto px-4 py-6">
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }} className="theme-transition">
+      <div className="container mx-auto px-4 py-6 theme-transition">
         {/* ヘッダー */}
         <Header />
         
@@ -54,6 +72,8 @@ function AppContent() {
             onClearAll={handleClearAll}
             guaranteedCount={(searchResult.guaranteedResults || []).length}
             totalCombosCount={(searchResult.allCombos || []).length + (searchResult.guaranteedResults || []).length}
+            hideLowRarity={hideLowRarity}
+            onHideLowRarityChange={handleLowRarityToggle}
           />
         </div>
         
@@ -78,12 +98,29 @@ function AppContent() {
               <AllCombinationResults 
                 allCombos={searchResult.allCombos || []}
                 guaranteedResults={searchResult.guaranteedResults || []}
+                hideLowRarity={hideLowRarity}
               />
             )}
           </div>
         </div>
       </div>
       <ScrollToTop />
+      
+      {/* オーバーレイ表示 */}
+      {overlayMessage && (
+        <div 
+          className="fixed top-8 left-1/2 px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in-up overlay-message"
+          style={{
+            backgroundColor: 'var(--bg-secondary)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border-color)'
+          }}
+        >
+          <div className="text-sm font-medium">
+            {overlayMessage}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

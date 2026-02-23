@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useApp } from '../contexts/AppContext'
+import { useApp } from '../hooks/useApp'
 import { getUIText, type Language } from '../constants/dictionary'
 import { InfoModal } from './InfoModal'
 

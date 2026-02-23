@@ -1,5 +1,5 @@
 import React from 'react'
-import { useApp } from '../contexts/AppContext'
+import { useApp } from '../hooks/useApp'
 
 interface InfoModalProps {
   isOpen: boolean
@@ -81,16 +81,31 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
             <>
               {/* 日本語コンテンツ */}
               <div>
+                <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>⚠️ タグ消失のシステム保護</h3>
+                <div className="space-y-2 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
+                  <div>
+                    <strong>上級エリートを含む9時間設定</strong>：「上級エリート」のみが保護されます
+                  </div>
+                  <div>
+                    <strong>上級エリートを含む組み合わせ</strong>：9時間設定で星6が確定します
+                  </div>
+                  <div>
+                    <strong>※注意</strong>：併用したタグが消失し、対象の星6オペレーターを一点狙いできない（星6内でのランダム抽選になる）可能性は僅かに残ります
+                  </div>
+                </div>
+              </div>
+
+              <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>🚀 使い方</h3>
                 <div className="space-y-3 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
                   <div>
                     <strong>基本操作</strong>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      <li><strong>タグを選択</strong>：キャラクターの特性に合わせてタグを選択します（最大5個）</li>
-                      <li><strong>検索結果確認</strong>：選択したタグに一致するキャラクターが表示されます</li>
-                      <li><strong>確定組み合わせ</strong>：1〜5タグ選択時は確定組み合わせと対象キャラクターを表示</li>
+                      <li><strong>タグを選択</strong>：オペレーターの特性に合わせてタグを選択します（最大5個）</li>
+                      <li><strong>検索結果確認</strong>：選択したタグに一致するオペレーターが表示されます</li>
+                      <li><strong>確定組み合わせ</strong>：1〜5タグ選択時は確定組み合わせと対象オペレーターを表示</li>
                       <li><strong>全組み合わせ分析</strong>：可能なすべてのタグ組み合わせと結果を確認</li>
-                      <li><strong>Wikiアクセス</strong>：キャラクターのアイコンをクリックで詳細情報へ移動</li>
+                      <li><strong>Wikiアクセス</strong>：オペレーターのアイコンをクリックで詳細情報へ移動</li>
                       <li><strong>リセット機能</strong>：タグリセットボタンで選択をクリア</li>
                     </ul>
                   </div>
@@ -107,13 +122,13 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
               <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>🎯 特徴</h3>
                 <ul className="list-disc list-inside space-y-2 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
-                  <li><strong>リアルタイム検索</strong>：タグ選択で即座にキャラクターを絞り込み</li>
+                  <li><strong>リアルタイム検索</strong>：タグ選択で即座にオペレーターを絞り込み</li>
                   <li><strong>確定組み合わせ表示</strong>：1〜5タグ選択で★4以上確定またはロボット確定の組み合わせを表示</li>
                   <li><strong>全組み合わせ分析</strong>：選択したタグから可能なすべての組み合わせを網羅的に表示</li>
-                  <li><strong>候補ラベル表示</strong>：確定対象外のキャラクターに「候補」ラベルを表示</li>
+                  <li><strong>候補ラベル表示</strong>：確定対象外のオペレーターに「候補」ラベルを表示</li>
                   <li><strong>ロボット説明</strong>：ロボット確定の場合に特別な説明を表示</li>
                   <li><strong>テーマ切り替え</strong>：ライトモードとダークモードをサポート</li>
-                  <li><strong>Wiki連携</strong>：キャラクター名/アイコンクリックでアークナイツ攻略 Wikiへ移動</li>
+                  <li><strong>Wiki連携</strong>：オペレーター名/アイコンクリックでアークナイツ攻略 Wikiへ移動</li>
                 </ul>
               </div>
 
@@ -150,16 +165,31 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
             <>
               {/* 英語コンテンツ */}
               <div>
+                <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>⚠️ System Protection for Tag Loss</h3>
+                <div className="space-y-2 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
+                  <div>
+                    <strong>9-hour setting with Senior Elite</strong>: Only "Senior Elite" tag is protected
+                  </div>
+                  <div>
+                    <strong>Combinations with Senior Elite</strong>: 9-hour setting guarantees ★6
+                  </div>
+                  <div>
+                    <strong>※Note</strong>: There's a small possibility that combined tags may disappear, making it impossible to target a specific ★6 operator (becomes random selection among ★6)
+                  </div>
+                </div>
+              </div>
+
+              <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>🚀 How to Use</h3>
                 <div className="space-y-3 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
                   <div>
                     <strong>Basic Operations</strong>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      <li><strong>Select Tags</strong>: Choose tags based on character characteristics (max 5 tags)</li>
-                      <li><strong>Check Results</strong>: View characters matching selected tags</li>
+                      <li><strong>Select Tags</strong>: Choose tags based on operator characteristics (max 5 tags)</li>
+                      <li><strong>Check Results</strong>: View operators matching selected tags</li>
                       <li><strong>Guaranteed Combinations</strong>: Display guaranteed combinations with 1-5 tags</li>
                       <li><strong>Complete Analysis</strong>: Check all possible tag combinations and results</li>
-                      <li><strong>Wiki Access</strong>: Click character icons for detailed information</li>
+                      <li><strong>Wiki Access</strong>: Click operator icons for detailed information</li>
                       <li><strong>Reset Function</strong>: Clear selections with reset button</li>
                     </ul>
                   </div>
@@ -176,14 +206,14 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
               <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>🎯 Features</h3>
                 <ul className="list-disc list-inside space-y-2 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
-                  <li><strong>Real-time Search</strong>: Instantly filter characters by selecting tags</li>
+                  <li><strong>Real-time Search</strong>: Instantly filter operators by selecting tags</li>
                   <li><strong>Guaranteed Combinations</strong>: Display guaranteed combinations with 1-5 tags</li>
                   <li><strong>Complete Analysis</strong>: Check all possible tag combinations and results</li>
-                  <li><strong>Candidate Labels</strong>: Display "Candidate" labels for non-guaranteed characters</li>
+                  <li><strong>Candidate Labels</strong>: Display "Candidate" labels for non-guaranteed operators</li>
                   <li><strong>Robot Explanations</strong>: Show special explanations for robot guaranteed cases</li>
                   <li><strong>Multi-language Support</strong>: Japanese and English UI support</li>
                   <li><strong>Theme Switching</strong>: Light mode and dark mode support</li>
-                  <li><strong>Wiki Integration</strong>: Click character names/icons to navigate to Arknights Wiki</li>
+                  <li><strong>Wiki Integration</strong>: Click operator names/icons to navigate to Arknights Wiki</li>
                 </ul>
               </div>
 

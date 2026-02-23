@@ -95,6 +95,28 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
     return minRarity
   }
 
+  // 同じキャラクターセットを持つ確定結果をフィルタリング
+  const getUniqueGuaranteedResults = () => {
+    if (!guaranteedResults || guaranteedResults.length === 0) return []
+    
+    const seenCharacterSets = new Set<string>()
+    const uniqueResults: typeof guaranteedResults = []
+    
+    guaranteedResults.forEach(result => {
+      // キャラクターセットを文字列ソートして一意のキーを生成
+      const sortedCharacters = [...result.characters].sort((a, b) => a.name.localeCompare(b.name))
+      const characterSetKey = sortedCharacters.map(char => char.name).join(',')
+      
+      // まだ見ていないキャラクターセットの場合のみ追加
+      if (!seenCharacterSets.has(characterSetKey)) {
+        seenCharacterSets.add(characterSetKey)
+        uniqueResults.push(result)
+      }
+    })
+    
+    return uniqueResults
+  }
+
   const getCharacterRarityColor = (rarity: string) => {
     switch (rarity) {
       case '6':
@@ -180,16 +202,17 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
           <div className="flex items-center gap-2 p-4 rounded-lg" style={{ backgroundColor: 'var(--bg-tertiary)', border: '1px solid var(--border-color)' }}>
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <h3 className="text-lg font-semibold" style={{ color: '#16a34a' }}>
-              {language === 'ja' ? '確定結果' : 'Guaranteed Results'} ({guaranteedResults.length}件)
+              {language === 'ja' ? '確定結果' : 'Guaranteed Results'} ({getUniqueGuaranteedResults().length}件)
             </h3>
             <span className="text-sm" style={{ color: '#16a34a', fontSize: '1rem' }}>
               {(() => {
+                const uniqueGuaranteedResults = getUniqueGuaranteedResults()
                 const minRarity = getMinRarityInGuaranteed()
                 if (minRarity) {
-                  const hasSeniorEliteTag = guaranteedResults.some(result => 
+                  const hasSeniorEliteTag = uniqueGuaranteedResults.some(result => 
                     result.combo.includes('上級エリート')
                   )
-                  const hasEliteTag = guaranteedResults.some(result => 
+                  const hasEliteTag = uniqueGuaranteedResults.some(result => 
                     result.combo.includes('エリート') && !result.combo.includes('上級エリート')
                   )
                   
@@ -206,16 +229,16 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                   }
                   
                   return language === 'ja' 
-                    ? `★${minRarity}+確定結果あり` 
+                    ? `★${minRarity}+確定結果があります` 
                     : `★${minRarity}+ guaranteed results available`
                 }
-                return language === 'ja' ? '★3+確定結果あり' : '★3+ guaranteed results available'
+                return language === 'ja' ? '★3+確定結果があります' : '★3+ guaranteed results available'
               })()}
             </span>
           </div>
           
           <div className="grid gap-3">
-            {guaranteedResults.map((result, index) => {
+            {getUniqueGuaranteedResults().map((result, index) => {
               // ★3以下を非表示設定の場合はフィルタリングして表示
               const filteredCharacters = result.characters
                 .filter(character => !hideLowRarity || parseInt(character.rarity) >= 3)
@@ -243,6 +266,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                     <div
                       key={character.name}
                       className={`relative flex flex-col items-center border-2 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
+                      style={{ width: '95px' }}
                     >
                       <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden">
                         <a 
@@ -254,7 +278,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                           <CharacterImage character={character} size={75} />
                         </a>
                       </div>
-                      <div className="w-full bg-black bg-opacity-75 text-white text-xs font-medium text-center py-1">
+                      <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 truncate px-1">
                         {getCharacterName(character.icon.replace('.png', ''), language)}
                       </div>
                     </div>
@@ -353,6 +377,8 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                   <div
                     key={character.name}
                     className={`relative flex flex-col items-center border-2 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
+                    style={{ width: '85px' }}
+                    title={`${getCharacterName(character.icon.replace('.png', ''), language)}のWikiを開く`}
                   >
                     <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden">
                       <a 
@@ -364,7 +390,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                         <CharacterImage character={character} size={75} />
                       </a>
                     </div>
-                    <div className="w-full bg-black bg-opacity-75 text-white text-xs font-medium text-center py-1">
+                    <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 truncate px-1">
                       {getCharacterName(character.icon.replace('.png', ''), language)}
                     </div>
                   </div>

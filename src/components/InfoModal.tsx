@@ -101,19 +101,12 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                   <div>
                     <strong>基本操作</strong>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      <li><strong>タグを選択</strong>：オペレーターの特性に合わせてタグを選択します（最大5個）</li>
+                      <li><strong>タグを選択</strong>：インゲームの募集条件に合わせて5個のタグを選択します</li>
                       <li><strong>検索結果確認</strong>：選択したタグに一致するオペレーターが表示されます</li>
-                      <li><strong>確定組み合わせ</strong>：1〜5タグ選択時は確定組み合わせと対象オペレーターを表示</li>
+                      <li><strong>確定組み合わせ</strong>：確定するタグの組み合わせと対象オペレーターを表示</li>
                       <li><strong>全組み合わせ分析</strong>：可能なすべてのタグ組み合わせと結果を確認</li>
                       <li><strong>Wikiアクセス</strong>：オペレーターのアイコンをクリックで詳細情報へ移動</li>
                       <li><strong>リセット機能</strong>：タグリセットボタンで選択をクリア</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <strong>確定条件</strong>
-                    <ul className="list-disc list-inside ml-4 mt-1">
-                      <li><strong>1タグ</strong>：★4以上確定の組み合わせ</li>
-                      <li><strong>2〜5タグ</strong>：★4以上確定またはロボット確定の組み合わせ</li>
                     </ul>
                   </div>
                 </div>
@@ -121,15 +114,19 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
 
               <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>🎯 特徴</h3>
-                <ul className="list-disc list-inside space-y-2 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
-                  <li><strong>リアルタイム検索</strong>：タグ選択で即座にオペレーターを絞り込み</li>
-                  <li><strong>確定組み合わせ表示</strong>：1〜5タグ選択で★4以上確定またはロボット確定の組み合わせを表示</li>
-                  <li><strong>全組み合わせ分析</strong>：選択したタグから可能なすべての組み合わせを網羅的に表示</li>
-                  <li><strong>候補ラベル表示</strong>：確定対象外のオペレーターに「候補」ラベルを表示</li>
-                  <li><strong>ロボット説明</strong>：ロボット確定の場合に特別な説明を表示</li>
-                  <li><strong>テーマ切り替え</strong>：ライトモードとダークモードをサポート</li>
-                  <li><strong>Wiki連携</strong>：オペレーター名/アイコンクリックでアークナイツ攻略 Wikiへ移動</li>
-                </ul>
+                <div className="space-y-3 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
+                  <div>
+                    <strong>機能一覧</strong>
+                    <ul className="list-disc list-inside ml-4 mt-1">
+                      <li><strong>リアルタイム検索</strong>：タグ選択で即座にオペレーターを絞り込み</li>
+                      <li><strong>確定組み合わせ表示</strong>：確定するタグの組み合わせと対象オペレーターを表示</li>
+                      <li><strong>全組み合わせ分析</strong>：選択したタグから可能なすべての組み合わせを網羅的に表示</li>
+                      <li><strong>候補ラベル表示</strong>：確定対象外のオペレーターに「候補」ラベルを表示</li>
+                      <li><strong>テーマ切り替え</strong>：ライトモードとダークモードをサポート</li>
+                      <li><strong>Wiki連携</strong>：オペレーター名/アイコンクリックでアークナイツ攻略 Wikiへ移動</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -147,12 +144,16 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                   <div>
                     <strong>確定条件</strong>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      <li>1タグ：★4以上確定のタグまたはロボット確定のタグ</li>
-                      <li>2タグ：★4以上確定またはロボット確定の組み合わせ</li>
-                      <li>3タグ：★4以上確定またはロボット確定の組み合わせ</li>
-                      <li>4タグ：★4以上確定またはロボット確定の組み合わせ</li>
-                      <li>5タグ：★4以上確定またはロボット確定の組み合わせ</li>
+                      <li>1タグ：★4以上確定の組み合わせ</li>
+                      <li>2〜5タグ：★4以上確定の組み合わせ</li>
+                      <li>上級エリート：選択時のみ特殊な確定条件が適用</li>
                     </ul>
+                  </div>
+                  <div>
+                    <strong>表示の最適化</strong>
+                    <p className="mt-1">
+                      同じキャラクターセットを持つ確定結果の場合、最小タグ数の組み合わせのみを表示し、重複する確定結果は非表示にしています。
+                    </p>
                   </div>
                   <div>
                     <strong>データソース</strong>
@@ -196,19 +197,12 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                   <div>
                     <strong>Basic Operations</strong>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      <li><strong>Select Tags</strong>: Choose tags based on operator characteristics (max 5 tags)</li>
+                      <li><strong>Select Tags</strong>: Choose 5 tags according to in-game recruitment conditions</li>
                       <li><strong>Check Results</strong>: View operators matching selected tags</li>
-                      <li><strong>Guaranteed Combinations</strong>: Display guaranteed combinations with 1-5 tags</li>
+                      <li><strong>Guaranteed Combinations</strong>: Display guaranteed tag combinations and target operators</li>
                       <li><strong>Complete Analysis</strong>: Check all possible tag combinations and results</li>
                       <li><strong>Wiki Access</strong>: Click operator icons for detailed information</li>
                       <li><strong>Reset Function</strong>: Clear selections with reset button</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <strong>Guarantee Conditions</strong>
-                    <ul className="list-disc list-inside ml-4 mt-1">
-                      <li><strong>1 Tag</strong>: ★4+ guaranteed combinations</li>
-                      <li><strong>2-5 Tags</strong>: ★4+ guaranteed or robot guaranteed combinations</li>
                     </ul>
                   </div>
                 </div>
@@ -216,16 +210,19 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
 
               <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: 'var(--text-primary)' }}>🎯 Features</h3>
-                <ul className="list-disc list-inside space-y-2 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
-                  <li><strong>Real-time Search</strong>: Instantly filter operators by selecting tags</li>
-                  <li><strong>Guaranteed Combinations</strong>: Display guaranteed combinations with 1-5 tags</li>
-                  <li><strong>Complete Analysis</strong>: Check all possible tag combinations and results</li>
-                  <li><strong>Candidate Labels</strong>: Display "Candidate" labels for non-guaranteed operators</li>
-                  <li><strong>Robot Explanations</strong>: Show special explanations for robot guaranteed cases</li>
-                  <li><strong>Multi-language Support</strong>: Japanese and English UI support</li>
-                  <li><strong>Theme Switching</strong>: Light mode and dark mode support</li>
-                  <li><strong>Wiki Integration</strong>: Click operator names/icons to navigate to Arknights Wiki</li>
-                </ul>
+                <div className="space-y-3 text-sm text-left" style={{ color: 'var(--text-secondary)' }}>
+                  <div>
+                    <strong>Feature List</strong>
+                    <ul className="list-disc list-inside ml-4 mt-1">
+                      <li><strong>Real-time Search</strong>: Instantly filter operators by selecting tags</li>
+                      <li><strong>Guaranteed Combinations</strong>: Display guaranteed tag combinations and target operators</li>
+                      <li><strong>Complete Analysis</strong>: Check all possible tag combinations and results</li>
+                      <li><strong>Candidate Labels</strong>: Display "Candidate" labels for non-guaranteed operators</li>
+                      <li><strong>Theme Support</strong>: Light and dark mode support</li>
+                      <li><strong>Wiki Integration</strong>: Click operator names/icons to navigate to Arknights Strategy Wiki</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
               <div>
@@ -243,12 +240,16 @@ export const InfoModal: React.FC<InfoModalProps> = ({ isOpen, onClose }) => {
                   <div>
                     <strong>Guarantee Conditions</strong>
                     <ul className="list-disc list-inside ml-4 mt-1">
-                      <li>1 Tag: ★4+ guaranteed tag or robot guaranteed tag</li>
-                      <li>2 Tags: ★4+ guaranteed or robot guaranteed combinations</li>
-                      <li>3 Tags: ★4+ guaranteed or robot guaranteed combinations</li>
-                      <li>4 Tags: ★4+ guaranteed or robot guaranteed combinations</li>
-                      <li>5 Tags: ★4+ guaranteed or robot guaranteed combinations</li>
+                      <li>1 Tag: ★4+ guaranteed combinations</li>
+                      <li>2-5 Tags: ★4+ guaranteed combinations</li>
+                      <li>Senior Elite: Special guarantee conditions apply only when selected</li>
                     </ul>
+                  </div>
+                  <div>
+                    <strong>Display Optimization</strong>
+                    <p className="mt-1">
+                      When multiple guaranteed results contain the same character set, only the combination with the minimum number of tags is displayed to avoid duplicate entries.
+                    </p>
                   </div>
                   <div>
                     <strong>Data Source</strong>

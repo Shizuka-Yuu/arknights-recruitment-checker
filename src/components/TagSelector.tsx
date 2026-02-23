@@ -53,6 +53,18 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
       : 'bg-white text-gray-700 border-gray-300'
   }
 
+  const getTagStyle = (tag: string) => {
+    const isSelected = selectedTags.includes(tag)
+    if (isSelected) {
+      return {
+        backgroundColor: '#0196d9',
+        color: 'white',
+        borderColor: '#0196d9'
+      }
+    }
+    return {}
+  }
+
   const getTooltipText = (tag: string) => {
     const isDisabled = isMaxReached && !selectedTags.includes(tag)
     return isDisabled 
@@ -148,7 +160,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
               className="relative inline-flex h-5 w-9 items-center rounded-full transition-colors cursor-pointer"
               style={{
                 backgroundColor: hideLowRarity 
-                  ? '#0196d9'  // リセットボタンと同じカラー
+                  ? '#0196d9'  // 統一カラー
                   : (theme === 'dark' ? '#4b5563' : '#d1d5db')
               }}
               title={language === 'ja' 
@@ -173,7 +185,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
         <div className="flex items-center space-x-2">
           <button
             onClick={onClearAll}
-            className="px-2 py-1 text-xs font-medium hover:opacity-90 transition-opacity cursor-pointer"
+            className="hidden sm:block px-2 py-1 text-xs font-medium hover:opacity-90 transition-opacity cursor-pointer"
             style={{ 
               backgroundColor: '#0196d9',
               color: 'white',
@@ -216,20 +228,21 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
         </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         {/* スマホでは縦並び、PCでは横並び */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           {/* タイプ */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <h3 className={`text-sm font-medium text-gray-600 dark:text-gray-400 ${language === 'en' ? 'min-w-[70px]' : 'min-w-[45px]'} text-left h-8 flex items-center`}>{ui.tagCategories.type}</h3>
-            <div className="flex flex-wrap gap-2 text-left flex-1 items-start min-h-[40px]">
+            <div className="flex flex-wrap gap-2 text-left flex-1 items-start">
               {TAG_CATEGORIES.type.map((tag) => (
                 <button
                   key={`type-${tag}`}
                   title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  className={`px-3 py-1 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  style={getTagStyle(tag)}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -238,16 +251,17 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           </div>
 
           {/* 位置 */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <h3 className={`text-sm font-medium text-gray-600 dark:text-gray-400 ${language === 'en' ? 'min-w-[70px]' : 'min-w-[45px]'} text-left h-8 flex items-center`}>{ui.tagCategories.position}</h3>
-            <div className="flex flex-wrap gap-2 text-left flex-1 items-start min-h-[40px]">
+            <div className="flex flex-wrap gap-2 text-left flex-1 items-start">
               {TAG_CATEGORIES.position.map((tag) => (
                 <button
                   key={`position-${tag}`}
                   title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  className={`px-3 py-1 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  style={getTagStyle(tag)}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -256,16 +270,17 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           </div>
 
           {/* タグ */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <h3 className={`text-sm font-medium text-gray-600 dark:text-gray-400 ${language === 'en' ? 'min-w-[70px]' : 'min-w-[45px]'} text-left h-8 flex items-center`}>{ui.tagCategories.tags}</h3>
-            <div className="flex flex-wrap gap-2 text-left flex-1 items-start min-h-[40px]">
+            <div className="flex flex-wrap gap-2 text-left flex-1 items-start">
               {TAG_CATEGORIES.tags.map((tag) => (
                 <button
                   key={`tags-${tag}`}
                   title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  className={`px-3 py-1 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  style={getTagStyle(tag)}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -274,16 +289,17 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
           </div>
 
           {/* 確定 */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <h3 className={`text-sm font-medium text-gray-600 dark:text-gray-400 ${language === 'en' ? 'min-w-[70px]' : 'min-w-[45px]'} text-left h-8 flex items-center`}>{ui.tagCategories.confirmed}</h3>
-            <div className="flex flex-wrap gap-2 text-left flex-1 items-start min-h-[40px]">
+            <div className="flex flex-wrap gap-2 text-left flex-1 items-start">
               {TAG_CATEGORIES.confirmed.map((tag) => (
                 <button
                   key={`confirmed-${tag}`}
                   title={getTooltipText(tag)}
                   onClick={() => handleTagClick(tag)}
                   disabled={isMaxReached && !selectedTags.includes(tag)}
-                  className={`px-3 py-2 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  className={`px-3 py-1 text-sm rounded-sm border transition-colors text-left ${getTagColor(tag)} ${getCursorClass(tag)} hover:scale-105 hover:shadow-md`}
+                  style={getTagStyle(tag)}
                 >
                   {getTagName(tag, language)}
                 </button>
@@ -296,32 +312,45 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
       {/* 選択中のタグ表示 */}
       {selectedTags.length > 0 && (
         <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              {language === 'ja' ? '選択中のタグ' : 'Selected Tags'}
-            </p>
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            {language === 'ja' ? '選択中のタグ' : 'Selected Tags'}
+          </p>
+          <div className="flex justify-between items-start">
+            <div className="flex flex-wrap gap-1">
+              {selectedTags.map(tag => (
+                <span
+                  key={tag}
+                  title={getTooltipText(tag)}
+                  className="px-2 py-1 text-xs rounded flex items-center gap-1"
+                  style={{
+                    backgroundColor: '#0196d9',
+                    color: 'white',
+                    border: 'none'
+                  }}
+                >
+                  {getTagName(tag, language)}
+                  <button
+                    onClick={() => onTagToggle(tag)}
+                    className="text-white hover:text-gray-200"
+                  >
+                    ×
+                  </button>
+                </span>
+              ))}
+            </div>
             <button
               onClick={onClearAll}
-              className="text-xs text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
+              className="text-xs hover:opacity-90 transition-opacity cursor-pointer"
+              style={{ 
+                backgroundColor: '#0196d9',
+                color: 'white',
+                borderRadius: '4px',
+                padding: '4px 8px',
+                height: '24px' // タグボタンの高さに合わせる
+              }}
             >
               {ui.clear}
             </button>
-          </div>
-          <div className="flex flex-wrap gap-1">
-            {selectedTags.map(tag => (
-              <span
-                title={getTooltipText(tag)}
-                className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded flex items-center gap-1"
-              >
-                {getTagName(tag, language)}
-                <button
-                  onClick={() => onTagToggle(tag)}
-                  className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                >
-                  ×
-                </button>
-              </span>
-            ))}
           </div>
         </div>
       )}

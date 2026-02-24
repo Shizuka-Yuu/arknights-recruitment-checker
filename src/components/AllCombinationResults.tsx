@@ -10,8 +10,13 @@ interface AllCombinationResultsProps {
 }
 
 const tryImagePaths = (iconName: string): string[] => {
-  const basePath = import.meta.env.BASE_URL || '/'
-  const cleanName = iconName.replace(/^img_/, '').replace(/^icon_/, '').replace(/\.png$/, '')
+  // 開発環境ではBASE_URLを無視してルートパスを使用
+  const isDev = import.meta.env.DEV;
+  const basePath = isDev ? '' : (import.meta.env.BASE_URL || '');
+  const cleanName = iconName
+    .replace(/^img_/, "")
+    .replace(/^icon_/, "")
+    .replace(/\.png$/, "");
   
   const paths = [
     `${basePath}images/${iconName}`, // ファイル名そのまま

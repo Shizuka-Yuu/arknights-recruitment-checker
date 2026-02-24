@@ -39,7 +39,7 @@ export const Header: React.FC = () => {
             title={language === 'ja' ? '使い方・仕様について' : 'About usage & specifications'}
           >
             <img 
-              src={`${import.meta.env.BASE_URL || '/'}images/ui/info_btn.png`} 
+              src={`${import.meta.env.DEV ? '' : (import.meta.env.BASE_URL || '')}images/ui/info_btn.png`} 
               alt="Info" 
               className="h-7 w-7 object-contain"
             />
@@ -103,7 +103,7 @@ export const Header: React.FC = () => {
           }}
         >
           <img 
-            src={`${import.meta.env.BASE_URL || '/'}images/ui/header_logo.png`}
+            src={`${import.meta.env.DEV ? '' : (import.meta.env.BASE_URL || '')}images/ui/header_logo.png`}
             alt="Header Logo"
             className="object-contain"
             style={{

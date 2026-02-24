@@ -268,7 +268,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
             title={ui.clearAll}
           >
             <img
-              src={`${import.meta.env.BASE_URL || "/"}images/ui/reset_btn.png`}
+              src={`${import.meta.env.DEV ? '' : (import.meta.env.BASE_URL || "")}images/ui/reset_btn.png`}
               alt={ui.clearAll}
               className="h-full w-full object-contain"
             />

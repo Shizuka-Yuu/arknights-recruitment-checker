@@ -9,8 +9,13 @@ interface GuaranteedResultsProps {
 }
 
 const tryImagePaths = (iconName: string): string[] => {
-  const basePath = import.meta.env.BASE_URL || '/'
-  const cleanName = iconName.replace(/^img_/, '').replace(/^icon_/, '').replace(/\.png$/, '')
+  // 開発環境ではBASE_URLを無視してルートパスを使用
+  const isDev = import.meta.env.DEV;
+  const basePath = isDev ? '' : (import.meta.env.BASE_URL || '');
+  const cleanName = iconName
+    .replace(/^img_/, "")
+    .replace(/^icon_/, "")
+    .replace(/\.png$/, "");
   
   const paths = [
     `${basePath}images/${iconName}`, // 元のファイル名（プレフィックスあり）
@@ -41,20 +46,28 @@ const CharacterImage: React.FC<{ character: Character; size?: number }> = ({ cha
   
   if (isError) {
     return (
-      <div className={`w-[${size}px] h-[${size}px] bg-gray-300 rounded flex items-center justify-center text-xs text-gray-600`}>
+      <div 
+        className="bg-gray-300 rounded flex items-center justify-center text-xs text-gray-600"
+        style={{ width: `${size}px`, height: `${size}px` }}
+      >
         ?
       </div>
     )
   }
   
-  const imgSize = size - 10 // 少し小さく表示
-  
   return (
     <img
       src={currentPath}
       alt={character.name}
-      className="w-full h-full object-contain"
-      style={{ maxWidth: `${imgSize}px`, maxHeight: `${imgSize}px` }}
+      className="object-cover flex-shrink-0"
+      style={{ 
+        width: '85px', 
+        height: '85px',
+        minWidth: '85px',
+        maxWidth: '85px',
+        minHeight: '85px',
+        maxHeight: '85px'
+      }}
       onError={handleError}
       key={currentPath} // パスが変更されたら再マウント
     />
@@ -215,14 +228,14 @@ export const GuaranteedResults: React.FC<GuaranteedResultsProps> = ({ combos, ch
                       {comboCharacters.map(character => (
                         <div
                           key={character.name}
-                          className={`relative flex flex-col items-center border-2 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
+                          className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
                         >
-                          <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden">
+                          <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
                             <a 
                               href={`https://arknights.wikiru.jp/?${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="block w-full h-full flex items-center justify-center"
+                              className="w-full h-full flex items-center justify-center cursor-pointer"
                               onClick={(e) => {
                                 e.stopPropagation()
                                 console.log('Guaranteed icon clicked:', getCharacterName(character.icon.replace('.png', ''), 'ja'))
@@ -231,7 +244,7 @@ export const GuaranteedResults: React.FC<GuaranteedResultsProps> = ({ combos, ch
                               <CharacterImage character={character} size={75} />
                             </a>
                           </div>
-                          <div className="w-full bg-black bg-opacity-75 text-white text-xs font-medium text-center py-1">
+                          <div className="w-full bg-black bg-opacity-75 text-white text-xs font-medium text-center py-1 leading-tight truncate px-1">
                             {getCharacterName(character.icon.replace('.png', ''), language)}
                           </div>
                         </div>

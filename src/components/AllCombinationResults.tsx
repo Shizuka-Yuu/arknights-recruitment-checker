@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useApp } from '../hooks/useApp'
 import { getCharacterName, getTagName } from '../constants/dictionary'
-import type { ComboResult, Character } from '../types/index'
+import type { Character, ComboResult } from '../types'
 
 interface AllCombinationResultsProps {
   allCombos: ComboResult[]
@@ -51,8 +51,6 @@ const CharacterImage: React.FC<{ character: Character; size?: number }> = ({ cha
     )
   }
   
-  const imgSize = size - 10 // 余白を確保して表示
-  
   return (
     <div 
       className="flex items-center justify-center"
@@ -61,8 +59,15 @@ const CharacterImage: React.FC<{ character: Character; size?: number }> = ({ cha
       <img
         src={currentPath}
         alt={character.name}
-        className="object-contain"
-        style={{ maxWidth: `${imgSize}px`, maxHeight: `${imgSize}px` }}
+        className="object-cover flex-shrink-0"
+        style={{ 
+          width: '85px', 
+          height: '85px',
+          minWidth: '85px',
+          maxWidth: '85px',
+          minHeight: '85px',
+          maxHeight: '85px'
+        }}
         onError={handleError}
         key={currentPath} // パス変更時に画像を再読み込みさせるため
       />
@@ -265,20 +270,19 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                     {filteredCharacters.map(character => (
                     <div
                       key={character.name}
-                      className={`relative flex flex-col items-center border-2 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
-                      style={{ width: '95px' }}
+                      className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
                     >
-                      <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden">
+                      <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
                         <a 
                           href={`https://arknights.wikiru.jp/?${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block w-full h-full flex items-center justify-center"
+                          className="w-full h-full flex items-center justify-center cursor-pointer"
                         >
                           <CharacterImage character={character} size={75} />
                         </a>
                       </div>
-                      <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 truncate px-1">
+                      <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight truncate px-1">
                         {getCharacterName(character.icon.replace('.png', ''), language)}
                       </div>
                     </div>
@@ -379,11 +383,9 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                   {filteredCharacters.map(character => (
                   <div
                     key={character.name}
-                    className={`relative flex flex-col items-center border-2 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
-                    style={{ width: '85px' }}
-                    title={`${getCharacterName(character.icon.replace('.png', ''), language)}のWikiを開く`}
+                    className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
                   >
-                    <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden">
+                    <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
                       <a 
                         href={`https://arknights.wikiru.jp/?${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
                         target="_blank"
@@ -393,7 +395,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                         <CharacterImage character={character} size={75} />
                       </a>
                     </div>
-                    <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 truncate px-1">
+                    <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight truncate px-1">
                       {getCharacterName(character.icon.replace('.png', ''), language)}
                     </div>
                   </div>

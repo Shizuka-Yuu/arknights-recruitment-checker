@@ -51,8 +51,15 @@ const CharacterImage: React.FC<{ character: Character; size: number }> = ({ char
         }
       }}
       alt={character.name}
-      style={{ width: size, height: size }}
-      className="object-cover rounded"
+      className="object-cover flex-shrink-0"
+      style={{ 
+        width: '85px', 
+        height: '85px',
+        minWidth: '85px',
+        maxWidth: '85px',
+        minHeight: '85px',
+        maxHeight: '85px'
+      }}
     />
   )
 }
@@ -233,14 +240,14 @@ export const CandidateResults: React.FC<CandidateResultsProps> = ({ combos, char
                         {comboCharacters.map(character => (
                           <div
                             key={character.name}
-                            className={`relative flex flex-col items-center border-2 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
+                            className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
                           >
-                            <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden">
+                            <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
                               <a 
                                 href={`https://arknights.wikiru.jp/?${getCharacterName(character.icon.replace('.png', ''), 'ja')}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block w-full h-full flex items-center justify-center"
+                                className="w-full h-full flex items-center justify-center cursor-pointer"
                                 onClick={(e) => {
                                   e.stopPropagation()
                                 }}
@@ -248,7 +255,7 @@ export const CandidateResults: React.FC<CandidateResultsProps> = ({ combos, char
                                 <CharacterImage character={character} size={75} />
                               </a>
                             </div>
-                            <div className="w-full bg-black bg-opacity-75 text-white text-xs font-medium text-center py-1">
+                            <div className="w-full bg-black bg-opacity-75 text-white text-xs font-medium text-center py-1 leading-tight truncate px-1">
                               {getCharacterName(character.icon.replace('.png', ''), language)}
                             </div>
                           </div>

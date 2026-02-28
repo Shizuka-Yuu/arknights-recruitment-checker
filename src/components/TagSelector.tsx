@@ -405,7 +405,7 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
       {/* 選択中のタグ表示 */}
       {selectedTags.length > 0 && (
         <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 text-left">
             {language === "ja" ? "選択中のタグ" : "Selected Tags"}
           </p>
           <div className="flex justify-between items-start">

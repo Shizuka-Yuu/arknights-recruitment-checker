@@ -61,11 +61,11 @@ export const CharacterGrid: React.FC<CharacterGridProps> = ({ characters }) => {
   }
 
   return (
-    <div className="grid grid-cols-4 grid-cols-[repeat(auto-fit,minmax(75px,1fr))] gap-2 max-w-6xl mx-auto">
+    <div className="grid grid-cols-4 grid-cols-[repeat(auto-fill,80px)] gap-2 max-w-6xl mx-auto justify-start">
       {characters.map((character) => (
         <div
           key={character.name}
-          className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getRarityColor(character.rarity)}`}
+          className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden w-20 ${getRarityColor(character.rarity)}`}
         >
           <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
             <a
@@ -89,7 +89,7 @@ export const CharacterGrid: React.FC<CharacterGridProps> = ({ characters }) => {
               <CharacterImage character={character} />
             </a>
           </div>
-          <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight truncate px-1" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight truncate px-1" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '90px' }}>
             {getCharacterName(character.icon.replace(".png", ""), language)}
           </div>
         </div>

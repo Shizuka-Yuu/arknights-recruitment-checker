@@ -334,11 +334,11 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-2 mb-2">
+                  <div className="flex flex-wrap gap-2 mb-2 justify-start">
                     {filteredCharacters.map((character) => (
                       <div
                         key={character.name}
-                        className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
+                        className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden w-20 ${getCharacterRarityColor(character.rarity)}`}
                       >
                         <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
                           <a
@@ -350,7 +350,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                             <CharacterImage character={character} size={75} />
                           </a>
                         </div>
-                        <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight truncate px-1">
+                        <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight px-1" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '90px' }}>
                           {getCharacterName(
                             character.icon.replace(".png", ""),
                             language,
@@ -536,11 +536,11 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-2 mb-2">
+                  <div className="flex flex-wrap gap-2 mb-2 justify-start">
                     {filteredCharacters.map((character) => (
                       <div
                         key={character.name}
-                        className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden ${getCharacterRarityColor(character.rarity)}`}
+                        className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden w-20 ${getCharacterRarityColor(character.rarity)}`}
                       >
                         <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
                           <a
@@ -552,7 +552,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                             <CharacterImage character={character} size={75} />
                           </a>
                         </div>
-                        <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight truncate px-1">
+                        <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight px-1" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '90px' }}>
                           {getCharacterName(
                             character.icon.replace(".png", ""),
                             language,

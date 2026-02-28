@@ -257,20 +257,20 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
       {guaranteedResults && guaranteedResults.length > 0 && (
         <div className="space-y-4">
           <div
-            className="flex items-center gap-2 p-4 rounded-lg"
+            className="flex items-center gap-2 p-4 rounded-lg flex-wrap md:flex-nowrap"
             style={{
               backgroundColor: "var(--bg-tertiary)",
               border: "1px solid var(--border-color)",
             }}
           >
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-            <h3 className="text-lg font-semibold" style={{ color: "#16a34a" }}>
+            <h3 className="text-base font-semibold md:text-sm" style={{ color: "#16a34a" }}>
               {language === "ja" ? "確定結果" : "Guaranteed Results"} (
               {getUniqueGuaranteedResults().length}件)
             </h3>
             <span
-              className="text-sm"
-              style={{ color: "#16a34a", fontSize: "1rem" }}
+              className="text-xs md:text-xs"
+              style={{ color: "#16a34a", fontSize: "0.875rem" }}
             >
               {(() => {
                 const uniqueGuaranteedResults = getUniqueGuaranteedResults();
@@ -338,9 +338,9 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                     {filteredCharacters.map((character) => (
                       <div
                         key={character.name}
-                        className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden w-20 ${getCharacterRarityColor(character.rarity)}`}
+                        className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden w-[74px] ${getCharacterRarityColor(character.rarity)}`}
                       >
-                        <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <div className="w-[74px] h-[74px] flex items-center justify-center overflow-hidden flex-shrink-0">
                           <a
                             href={`https://arknights.wikiru.jp/?${getCharacterName(character.icon.replace(".png", ""), "ja")}`}
                             target="_blank"
@@ -392,7 +392,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                           </span>
                           <span style={{ display: "block", color: "#dc2626" }}>
                             {language === "ja"
-                              ? "上級エリート以外の併用タグ消失リスク（星6内でのランダム抽選になる）あり"
+                              ? "上級エリート以外の併用タグ消失リスク（★6内でのランダム抽選になる）あり"
                               : "Other tags may disappear (random selection within ★6 only)"}
                           </span>
                         </span>
@@ -418,7 +418,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                               style={{ display: "block", color: "#dc2626" }}
                             >
                               {language === "ja"
-                                ? "エリート以外の併用タグ消失リスク（星5内でのランダム抽選になる）あり"
+                                ? "エリート以外の併用タグ消失リスク（★5内でのランダム抽選になる）あり"
                                 : "Other tags may disappear (random selection within ★5 only)"}
                             </span>
                           </span>
@@ -540,9 +540,9 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                     {filteredCharacters.map((character) => (
                       <div
                         key={character.name}
-                        className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden w-20 ${getCharacterRarityColor(character.rarity)}`}
+                        className={`relative flex flex-col items-center border-2 transition-transform hover:scale-105 overflow-hidden w-[74px] ${getCharacterRarityColor(character.rarity)}`}
                       >
-                        <div className="w-[75px] h-[75px] flex items-center justify-center overflow-hidden flex-shrink-0">
+                        <div className="w-[74px] h-[74px] flex items-center justify-center overflow-hidden flex-shrink-0">
                           <a
                             href={`https://arknights.wikiru.jp/?${getCharacterName(character.icon.replace(".png", ""), "ja")}`}
                             target="_blank"
@@ -594,7 +594,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                           </span>
                           <span style={{ display: "block", color: "#dc2626" }}>
                             {language === "ja"
-                              ? "上級エリート以外の併用タグ消失リスク（星6内でのランダム抽選になる）あり"
+                              ? "上級エリート以外の併用タグ消失リスク（★6内でのランダム抽選になる）あり"
                               : "Other tags may disappear (random selection within ★6 only)"}
                           </span>
                         </span>
@@ -620,7 +620,7 @@ export const AllCombinationResults: React.FC<AllCombinationResultsProps> = ({
                               style={{ display: "block", color: "#dc2626" }}
                             >
                               {language === "ja"
-                                ? "エリート以外の併用タグ消失リスク（星5内でのランダム抽選になる）あり"
+                                ? "エリート以外の併用タグ消失リスク（★5内でのランダム抽選になる）あり"
                                 : "Other tags may disappear (random selection within ★5 only)"}
                             </span>
                           </span>

@@ -35,7 +35,7 @@ export const dictionary: Record<Language, Dictionary> = {
   ja: {
     ui: {
       title: 'アークナイツ 公開求人チェッカー',
-      subtitle: 'タグを選択してキャラクターを検索・確定組み合わせを確認',
+      subtitle: 'タグを選択してオペレーターを検索・確定組み合わせを確認',
       tagSelection: 'タグ選択',
       clearAll: 'すべて解除',
       clear: 'クリア',
@@ -45,11 +45,11 @@ export const dictionary: Record<Language, Dictionary> = {
         maxReached: '✅ 5タグ選択完了！'
       },
       results: {
-        allCharacters: (count) => `全キャラクター (${count}件)`,
+        allCharacters: (count) => `全オペレーター (${count}件)`,
         searchResults: (count) => `検索結果 (${count}件)`,
-        noResults: '該当するキャラクターがいません',
+        noResults: '該当するオペレーターがいません',
         guaranteedCombos: '確定組み合わせ',
-        characters: 'キャラクター',
+        characters: 'オペレーター',
         comboCount: (count) => `${count}個の組み合わせ`
       },
       tagCategories: {
@@ -91,7 +91,7 @@ export const dictionary: Record<Language, Dictionary> = {
       '上級エリート': { ja: '上級エリート', en: 'Senior Elite' }
     },
     characters: {
-      // 星6キャラクター
+      // 星6オペレーター
       'saga_icon': { ja: 'サガ', en: 'Saga' },
       'siege_icon': { ja: 'シージ', en: 'Siege' },
       'icon_bagpipe': { ja: 'バグパイプ', en: 'Bagpipe' },
@@ -123,7 +123,7 @@ export const dictionary: Record<Language, Dictionary> = {
       'icon_aak': { ja: 'ア', en: 'Aak' },
       'icon_phantom': { ja: 'ファントム', en: 'Phantom' },
       'icon_weedy': { ja: 'ウィーディ', en: 'Weedy' },
-      // 星5キャラクター
+      // 星5オペレーター
       'icon_chiave': { ja: 'キアーベ', en: 'Chiave' },
       'icon_zima': { ja: 'ズィマー', en: 'Zima' },
       'texas_icon': { ja: 'テキサス', en: 'Texas' },
@@ -176,7 +176,7 @@ export const dictionary: Record<Language, Dictionary> = {
       'manticore_icon': { ja: 'マンティコア', en: 'Manticore' },
       'projektred_icon': { ja: 'レッド', en: 'Projekt Red' },
       'icon_waaifu': { ja: 'ワイフー', en: "Waai Fu" },
-      // 他のレアリティのキャラクターも追加...
+      // 他のレアリティのオペレーターも追加...
       'vigna_icon': { ja: 'ヴィグナ', en: 'Vigna' },
       'scavenger_icon': { ja: 'スカベンジャー', en: 'Scavenger' },
       'myrtle_icon': { ja: 'テンニンカ', en: 'Myrtle' },
@@ -250,7 +250,7 @@ export const dictionary: Record<Language, Dictionary> = {
   en: {
     ui: {
       title: 'Arknights Recruitment Checker',
-      subtitle: 'Select tags to search characters and check guaranteed combinations',
+      subtitle: 'Select tags to search operators and check guaranteed combinations',
       tagSelection: 'Tag Selection',
       clearAll: 'Clear All',
       clear: 'Clear',
@@ -260,11 +260,11 @@ export const dictionary: Record<Language, Dictionary> = {
         maxReached: '✅ 5 tags selected!'
       },
       results: {
-        allCharacters: (count) => `All Characters (${count})`,
+        allCharacters: (count) => `All Operators (${count})`,
         searchResults: (count) => `Search Results (${count})`,
-        noResults: 'No matching characters found',
+        noResults: 'No matching operators found',
         guaranteedCombos: 'Guaranteed Combinations',
-        characters: 'Characters',
+        characters: 'Operators',
         comboCount: (count) => `${count} combinations`
       },
       tagCategories: {
@@ -338,7 +338,7 @@ export const dictionary: Record<Language, Dictionary> = {
       'icon_aak': { ja: 'ア', en: 'Aak' },
       'icon_phantom': { ja: 'ファントム', en: 'Phantom' },
       'icon_weedy': { ja: 'ウィーディ', en: 'Weedy' },
-      // 他のキャラクターも同様に...
+      // 他のオペレーターも同様に...
       'vigna_icon': { ja: 'ヴィグナ', en: 'Vigna' },
       'scavenger_icon': { ja: 'スカベンジャー', en: 'Scavenger' },
       'myrtle_icon': { ja: 'テンニンカ', en: 'Myrtle' },

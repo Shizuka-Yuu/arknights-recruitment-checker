@@ -12,7 +12,7 @@ export const useCharacters = () => {
         const data = await response.json()
         setCharacters(data)
       } catch (error) {
-        console.error('キャラクターデータの読み込みに失敗しました:', error)
+        console.error('オペレーターデータの読み込みに失敗しました:', error)
       } finally {
         setLoading(false)
       }

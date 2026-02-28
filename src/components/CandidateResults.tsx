@@ -240,7 +240,7 @@ export const CandidateResults: React.FC<CandidateResultsProps> = ({ combos, char
                         ))}
                       </div>
                       
-                      {/* 該当キャラクター表示 */}
+                      {/* 該当オペレーター表示 */}
                       <div className="flex flex-wrap gap-2 mb-2">
                         {comboCharacters.map(character => (
                           <div
@@ -269,7 +269,7 @@ export const CandidateResults: React.FC<CandidateResultsProps> = ({ combos, char
                       
                       <div className="flex items-center justify-between">
                         <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-                          {tagCount}{language === 'ja' ? 'タグで候補' : ' tags candidate'} ({comboCharacters.length} {language === 'ja' ? 'キャラ' : 'characters'})
+                          {tagCount}{language === 'ja' ? 'タグで候補' : ' tags candidate'} ({comboCharacters.length} {language === 'ja' ? 'オペ' : 'operators'})
                         </p>
                         <div className="flex items-center gap-1">
                           <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>

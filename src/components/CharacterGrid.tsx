@@ -54,8 +54,8 @@ export const CharacterGrid: React.FC<CharacterGridProps> = ({ characters }) => {
     return (
       <div className="text-center py-8 text-gray-500 dark:text-gray-400">
         {language === "ja"
-          ? "該当するキャラクターがいません"
-          : "No matching characters found"}
+          ? "該当するオペレーターがいません"
+          : "No matching operators found"}
       </div>
     );
   }
@@ -89,7 +89,7 @@ export const CharacterGrid: React.FC<CharacterGridProps> = ({ characters }) => {
               <CharacterImage character={character} />
             </a>
           </div>
-          <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight truncate px-1">
+          <div className="w-full bg-black bg-opacity-75 text-white text-[10px] font-medium text-center py-1 leading-tight truncate px-1" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {getCharacterName(character.icon.replace(".png", ""), language)}
           </div>
         </div>

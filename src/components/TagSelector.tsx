@@ -229,11 +229,11 @@ export const TagSelector: React.FC<TagSelectorProps> = ({
               title={
                 language === "ja"
                   ? hideLowRarity
-                    ? "★1~2キャラクターを検索結果に表示する"
-                    : "★1~2キャラクターを検索結果から非表示にする"
+                    ? "★1~2オペレーターを検索結果に表示する"
+                    : "★1~2オペレーターを検索結果から非表示にする"
                   : hideLowRarity
-                    ? "Show ★1~2 characters in search results"
-                    : "Hide ★1~2 characters from search results"
+                    ? "Show ★1~2 operators in search results"
+                    : "Hide ★1~2 operators from search results"
               }
             >
               <span

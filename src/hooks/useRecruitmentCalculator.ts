@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import type { Character, SearchResult } from '../types'
 
-// キャラクタータグを前処理するヘルパー関数
+// オペレータータグを前処理するヘルパー関数
 const preprocessCharacterTags = (character: Character): string[] => {
   const tags = [
     character.class,
@@ -20,7 +20,7 @@ const preprocessCharacterTags = (character: Character): string[] => {
   return tags
 }
 
-// キャラクターをタグでフィルタリングするヘルパー関数
+// オペレーターをタグでフィルタリングするヘルパー関数
 const filterCharactersByTags = (
   characters: Character[], 
   selectedTags: string[]
@@ -100,7 +100,7 @@ export const useRecruitmentCalculator = (
     if (selectedTags.length === 1) {
       console.log('1タグ検索:', selectedTags[0])
       
-      // 上級エリートタグが選択されている場合のみ星6キャラを許可
+      // 上級エリートタグが選択されている場合のみ星6オペを許可
       const eligibleCharacters = selectedTags.includes('上級エリート') 
         ? characters 
         : characters.filter(char => char.rarity !== '6')
@@ -144,10 +144,10 @@ export const useRecruitmentCalculator = (
           
           console.log(`組み合わせ [${combo.join(', ')}] の検索結果: ${matchingCharacters.length}件`)
           if (matchingCharacters.length > 0) {
-            console.log(`  該当キャラ: ${matchingCharacters.map(c => `${c.name} (${c.rarity}★)`).join(', ')}`)
+            console.log(`  該当オペ: ${matchingCharacters.map(c => `${c.name} (${c.rarity}★)`).join(', ')}`)
           }
           
-          // 該当キャラクターがいる場合のみ追加
+          // 該当オペレーターがいる場合のみ追加
           if (matchingCharacters.length > 0) {
             // 最低レアリティを特定して確定判定
             const lowestRarity = Math.min(...matchingCharacters.map(char => parseInt(char.rarity)))
@@ -194,7 +194,7 @@ export const useRecruitmentCalculator = (
       if (aHasElite && !bHasElite) return -1
       if (!aHasElite && bHasElite) return 1
       
-      // それ以外はキャラクター数昇順
+      // それ以外はオペレーター数昇順
       return a.characters.length - b.characters.length
     })
 
@@ -210,11 +210,11 @@ export const useRecruitmentCalculator = (
       return !guaranteedComboSets.has(comboKey)
     })
 
-    // 全ての組み合わせをキャラクター数昇順でソート（純粋なキャラ数昇順）
+    // 全ての組み合わせをオペレーター数昇順でソート（純粋なオペ数昇順）
     filteredCombos.sort((a: ComboResult, b: ComboResult) => a.characters.length - b.characters.length)
 
     return { 
-      characters: [], // 直接的なキャラクター表示は使わない
+      characters: [], // 直接的なオペレーター表示は使わない
       guaranteedCombos: guaranteedCombos.map((r: ComboResult) => r.combo),
       allCombos: filteredCombos, // 確定結果を除外した候補のみを返す
       guaranteedResults: guaranteedCombos

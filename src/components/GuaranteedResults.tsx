@@ -78,7 +78,7 @@ export const GuaranteedResults: React.FC<GuaranteedResultsProps> = ({ combos, ch
   const { language } = useApp()
   const ui = getUIText(language)
   
-  // 組み合わせごとの該当キャラクターを取得
+  // 組み合わせごとの該当オペレーターを取得
   const getComboCharacters = (combo: string[]): Character[] => {
     return characters.filter(character => {
       const characterTags = [
@@ -223,7 +223,7 @@ export const GuaranteedResults: React.FC<GuaranteedResultsProps> = ({ combos, ch
                       ))}
                     </div>
                     
-                    {/* 該当キャラクター表示 */}
+                    {/* 該当オペレーター表示 */}
                     <div className="flex flex-wrap gap-2 mb-2">
                       {comboCharacters.map(character => (
                         <div
@@ -253,7 +253,7 @@ export const GuaranteedResults: React.FC<GuaranteedResultsProps> = ({ combos, ch
                     
                     <div className="flex items-center justify-between">
                       <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>
-                        {tagCount}{language === 'ja' ? 'タグで確定' : ' tags guaranteed'} ({comboCharacters.length} {language === 'ja' ? 'キャラ' : 'characters'})
+                        {tagCount}{language === 'ja' ? 'タグで確定' : ' tags guaranteed'} ({comboCharacters.length} {language === 'ja' ? 'オペ' : 'operators'})
                         {comboCharacters.some(char => char.tags.includes('ロボット')) && (
                           <span className="ml-2" style={{ color: 'var(--text-tertiary)' }}>
                             {language === 'ja' ? '・' : ' • '}

@@ -279,6 +279,15 @@
     "special": "上級エリート_must"
   },
   {
+    "rarity": "6",
+    "icon": "Kal'tsit_icon.png",
+    "name": "ケルシー",
+    "class": "医療",
+    "position": "遠距離",
+    "tags": "治療,召喚",
+    "special": "上級エリート_must"
+  },
+  {
     "rarity": "5",
     "icon": "icon_chiave.png",
     "name": "キアーベ",
@@ -744,6 +753,15 @@
     "class": "特殊",
     "position": "近距離",
     "tags": "弱化,高速再配置",
+    "special": "エリート"
+  },
+  {
+    "rarity": "5",
+    "icon": "akafuyu_icon.png",
+    "name": "アカフユ",
+    "class": "前衛",
+    "position": "近距離",
+    "tags": "火力,生存",
     "special": "エリート"
   },
   {

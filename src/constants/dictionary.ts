@@ -123,6 +123,7 @@ export const dictionary: Record<Language, Dictionary> = {
       'icon_aak': { ja: 'ア', en: 'Aak' },
       'icon_phantom': { ja: 'ファントム', en: 'Phantom' },
       'icon_weedy': { ja: 'ウィーディ', en: 'Weedy' },
+      "Kal'tsit_icon": { ja: 'ケルシー', en: "Kal'tsit" },
       // 星5オペレーター
       'icon_chiave': { ja: 'キアーベ', en: 'Chiave' },
       'icon_zima': { ja: 'ズィマー', en: 'Zima' },
@@ -176,6 +177,7 @@ export const dictionary: Record<Language, Dictionary> = {
       'manticore_icon': { ja: 'マンティコア', en: 'Manticore' },
       'projektred_icon': { ja: 'レッド', en: 'Projekt Red' },
       'icon_waaifu': { ja: 'ワイフー', en: "Waai Fu" },
+      'akafuyu_icon': { ja: 'アカフユ', en: 'Akafuyu' },
       // 他のレアリティのオペレーターも追加...
       'vigna_icon': { ja: 'ヴィグナ', en: 'Vigna' },
       'scavenger_icon': { ja: 'スカベンジャー', en: 'Scavenger' },
@@ -338,6 +340,8 @@ export const dictionary: Record<Language, Dictionary> = {
       'icon_aak': { ja: 'ア', en: 'Aak' },
       'icon_phantom': { ja: 'ファントム', en: 'Phantom' },
       'icon_weedy': { ja: 'ウィーディ', en: 'Weedy' },
+      "Kal'tsit_icon": { ja: 'ケルシー', en: "Kal'tsit" },
+      'akafuyu_icon': { ja: 'アカフユ', en: 'Akafuyu' },
       // 他のオペレーターも同様に...
       'vigna_icon': { ja: 'ヴィグナ', en: 'Vigna' },
       'scavenger_icon': { ja: 'スカベンジャー', en: 'Scavenger' },
